@@ -17,8 +17,8 @@ Alle Zahlen stammen aus den Skripten in `analyse/`. Radon in Bq/m³, Stunden- bz
 | A | 01.04.–17.06. | Technikraum/Werkstatt sehr niedrig (Median 9), niedriger als Wohnbereich (26–39) |
 | B | 18./22.06.–23.08. | Keller deutlich höher als Wohnbereich (Median 62 gegen 22–28), Sägezahn-Verlauf |
 | Urlaub | 31.07. abends–06.08. | alle Räume 300–390, CO₂ flach |
-| D | 24.08.–22.09. | alle Räume ähnlich niedrig (19–30), Keller nicht mehr erhöht |
-| E | ab 23.09. | alle Räume steigen wieder (Wohnbereich 35–40, Keller 50–65) |
+| D | 24.08.–22.09. | alle Räume ähnlich niedrig (18–30), Keller nicht mehr erhöht |
+| E | ab 23.09. | alle Räume steigen wieder (Wohnbereich 34–45, Keller 50–65) |
 
 ## 1. Urlaub (31.07. abends bis 06.08. gegen 19–20 Uhr)
 

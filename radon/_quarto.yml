@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - dashboard.html
 website:
   title: "Radon-Analyse"
   navbar:
@@ -9,6 +11,8 @@ website:
         text: Überblick
       - href: radon-hintergrund.qmd
         text: Radon-Hintergrund
+      - href: dashboard.html
+        text: Dashboard
       - href: befunde.qmd
         text: Befunde
       - href: fragen.qmd
