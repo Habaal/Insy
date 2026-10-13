@@ -20,5 +20,5 @@ Dokumentiert wird mit Quarto.
 1. Hintergrund zu Radon recherchiert → [Radon-Hintergrund](radon-hintergrund.qmd)
 2. Daten geprüft, Ausreißer und Ereignisse gesucht → [Befunde](befunde.qmd)
 3. Fragen an Hr. Grimmer und seine Antworten → [Fragen und Antworten](fragen.qmd)
-4. Ereignisse visualisiert → [Dashboard](dashboard.html): Verlauf mit Zoom und Phasen, Ereignistabelle (Klick springt zum Zeitpunkt), Tagesgang-Heatmap, Phasentabelle.
+4. Ereignisse visualisiert → [Dashboard](dashboard.html): Verlauf mit Zoom und Phasen, Ereignistabelle (Klick springt zum Zeitpunkt), typischer Tag vor/nach der Anlage, Wirkungs-Diagramme, Phasentabelle (mit Erklärtexten und Ampel für Laien).
    Neu bauen: `python -X utf8 analyse/13_dashboard_bauen.py` (aus `radon/`; braucht die CSV und `dashboard/template.html`). Das Dashboard lädt Plotly 2.27.0 von cdnjs, braucht also Internet.
