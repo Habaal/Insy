@@ -32,23 +32,23 @@ serien = {k: liste(h[k], 1 if k == "taus" else 0) for k in h.columns}
 
 # ---- Phasen (aus den Befunden; Hypothesen, von Hr. Grimmer zu bestaetigen)
 PHASEN = [
-    dict(id="fenster", name="Keller-Fenster offen (Hypothese)", von="2026-04-01 00:00", bis="2026-06-17 23:59",
-         frage="Frage 2: Welche zwei Fenster, von wann bis wann?"),
-    dict(id="urlaub", name="Urlaub", von="2026-07-31 18:00", bis="2026-08-06 19:30",
-         frage="Frage 1: Stimmt der Zeitraum? Gab es weitere Abwesenheiten?"),
+    dict(id="fenster", name="Überwiegend gelüftet", von="2026-04-01 00:00", bis="2026-06-17 23:59",
+         notiz="Laut Hr. Grimmer sporadisch, tendenziell mehr gelüftet als nicht (kein fester Zeitraum)"),
+    dict(id="urlaub", name="Urlaub (Haus zu)", von="2026-07-31 18:00", bis="2026-08-06 19:30",
+         notiz="Von Hr. Grimmer bestätigt: niemand zuhause, alles geschlossen"),
 ]
 WENDE = "2026-08-24 00:00"
 
 # ---- Ereignisse (automatisch erkannt, Skript 11) + Notizen
 NOTIZEN = {
-    "2026-03-28 02": "Anlaufphase der Messung",
-    "2026-03-30 15": "kurz nach Sensorstart Küche-Sockel (13:50)",
-    "2026-07-11 23": "kurze Spitze; davor Schlafzimmer-CO₂ 1767 ppm (Frage 7)",
-    "2026-07-16 12": "nur Keller, Sägezahn-Vorstufe (Frage 5)",
-    "2026-07-20 11": "tagsüber alle Wohnräume hoch, CO₂ normal (Frage 6)",
-    "2026-08-11 20": "kurze Spitze; Schlafzimmer-CO₂ ~1050 (Frage 7)",
-    "2026-08-23 01": "nachts, Büro nicht betroffen (Frage 7)",
-    "2026-10-11 01": "Küche-CO₂-Rekord 1778 ppm am selben Tag",
+    "2026-03-28 02": "Anfang der Messung: Problem wurde entdeckt, dann etwas dagegen unternommen",
+    "2026-03-30 15": "kurz nach Sensorstart Küche-Sockel (13:50), Einlaufphase",
+    "2026-07-11 23": "kurze Spitze; laut Hr. Grimmer vielleicht Messungenauigkeit. Davor Schlafzimmer-CO₂ 1767 ppm",
+    "2026-07-16 12": "nur im Keller, Keller laut Hr. Grimmer weniger wichtig",
+    "2026-07-20 11": "tagsüber alle Wohnräume hoch; laut Hr. Grimmer wahrscheinlich Fenster zu",
+    "2026-08-11 20": "kurze Spitze; laut Hr. Grimmer vielleicht Messungenauigkeit. Schlafzimmer-CO₂ ~1050",
+    "2026-08-23 01": "nachts, einen Tag vor dem Einbau der Anlage, Ursache unbekannt",
+    "2026-10-11 01": "Küche-CO₂ erreicht am selben Tag den Höchstwert (1778 ppm)",
 }
 ev = pd.read_csv("analyse/ereignisse_radon.csv", parse_dates=["von", "bis"])
 ereignisse = []
@@ -62,13 +62,13 @@ for r in ev.itertuples():
 RESETS = ["2026-04-16 07:00", "2026-04-30 16:00", "2026-07-06 06:00", "2026-08-30 11:00", "2026-09-10 14:00", "2026-09-16 15:00"]
 for t in RESETS:
     ereignisse.append(dict(art="Sensor-Reset", von=t, bis=t, raeume="alle Sensoren", peak=None,
-                           notiz="Betriebszeit aller Sensoren springt auf 0 (Frage 10)"))
+                           notiz="Betriebszeit aller Sensoren springt auf 0; Ursache laut Hr. Grimmer unbekannt"))
 ereignisse.sort(key=lambda e: e["von"])
 
 # ---- Kennzahlen je Periode (Median der Stundenwerte)
-PER = [("A", "01.04.–17.06.", "2026-04-01", "2026-06-17"), ("B", "22.06.–30.07.", "2026-06-22", "2026-07-30"),
-       ("Urlaub", "01.08.–06.08.", "2026-08-01", "2026-08-06"), ("C", "07.08.–23.08.", "2026-08-07", "2026-08-23"),
-       ("D", "25.08.–22.09.", "2026-08-25", "2026-09-22"), ("E", "23.09.–13.10.", "2026-09-23", "2026-10-13")]
+PER = [("überwiegend gelüftet", "01.04.–17.06.", "2026-04-01", "2026-06-17"), ("weniger gelüftet", "22.06.–30.07.", "2026-06-22", "2026-07-30"),
+       ("Urlaub (Haus zu)", "01.08.–06.08.", "2026-08-01", "2026-08-06"), ("nach Urlaub, vor Anlage", "07.08.–23.08.", "2026-08-07", "2026-08-23"),
+       ("nach Einbau der Anlage", "25.08.–22.09.", "2026-08-25", "2026-09-22"), ("Herbst (im Messfehler ±30)", "23.09.–13.10.", "2026-09-23", "2026-10-13")]
 tab = []
 for nm, lab, a, b in PER:
     seg = h.loc[a:b + " 23:59"] if False else h.loc[a:b]
@@ -88,11 +88,28 @@ kpi = dict(
     keller_a=med("technik", "2026-04-01", "2026-06-17"), keller_b=med("technik", "2026-06-22", "2026-07-30"),
     keller_d=med("technik", "2026-08-25", "2026-09-22"),
 )
+OGc = ["buero", "kueche", "wohn", "schlaf"]
+OG = h[OGc].mean(axis=1); OGmax = h[OGc].max(axis=1)
+U0, U1, INST = pd.Timestamp("2026-07-31 18:00"), pd.Timestamp("2026-08-06 19:30"), pd.Timestamp(WENDE)
+okm = (h.index >= "2026-04-01") & ~((h.index >= U0) & (h.index < U1))
+vor, nach = okm & (h.index < INST), h.index >= INST
+kpi.update(og_pre=int(round(OG[vor].mean())), og_post=int(round(OG[nach].mean())),
+           p100_pre=round(100 * (OGmax[vor] > 100).sum() / OGmax[vor].count(), 1), p100_post=round(100 * (OGmax[nach] > 100).sum() / OGmax[nach].count(), 1))
 print(json.dumps(kpi, ensure_ascii=False, indent=1))
+
+def prof(s):
+    g = s.groupby(s.index.hour)
+    return {"med": g.median().round(1).tolist(), "q1": g.quantile(.25).round(1).tolist(), "q3": g.quantile(.75).round(1).tolist()}
+tag = {}
+for k, ser in [("og", OG)] + [(r[0], h[r[0]]) for r in RAEUME]:
+    a, b = prof(ser[vor].dropna()), prof(ser[nach].dropna())
+    tag[k] = dict(pre=a["med"], pre25=a["q1"], pre75=a["q3"], post=b["med"], post25=b["q1"], post75=b["q3"])
+wk = pd.read_csv("analyse/wirkung_woche.csv", parse_dates=["t"])
+woche = [dict(t=r.t.strftime("%Y-%m-%d"), p100=None if pd.isna(r.p100) else round(float(r.p100), 1), exc=None if pd.isna(r.exc) else round(float(r.exc), 1)) for r in wk.itertuples()]
 print(pd.DataFrame(tab).to_string())
 
 daten = dict(start="2026-03-24 00:00", serien=serien, raeume=[dict(k=a, name=b, slot=d) for a, b, c, d in RAEUME],
-             phasen=PHASEN, wende=WENDE, ereignisse=ereignisse, perioden=tab, kpi=kpi)
+             phasen=PHASEN, wende=WENDE, ereignisse=ereignisse, perioden=tab, kpi=kpi, tag=tag, woche=woche)
 tpl = open("dashboard/template.html", encoding="utf-8").read()
 out = tpl.replace("/*__DATEN__*/null", json.dumps(daten, ensure_ascii=False, separators=(",", ":")))
 open("dashboard.html", "w", encoding="utf-8").write(out)

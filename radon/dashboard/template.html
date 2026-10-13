@@ -11,6 +11,7 @@
   --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,.10); --hover: rgba(11,11,11,.05);
   --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #4a3aa7;
   --seq-rgb: 42,120,214; --wash: 137,135,129;
+  --ok: #0ca30c; --warn: #fab219; --bad: #d03b3b; --ok-rgb: 12,163,12; --warn-rgb: 250,178,25; --bad-rgb: 208,59,59;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -46,7 +47,7 @@ button[aria-pressed="true"], button.act { border-color: var(--ink); font-weight:
 .chip[aria-pressed="true"] i { opacity: 1; }
 label.ck { display: inline-flex; align-items: center; gap: 5px; color: var(--ink2); cursor: pointer; }
 #main { height: 660px; }
-#heat { height: 360px; }
+#tag { height: 340px; } #wk1, #wk2 { height: 250px; }
 table { border-collapse: collapse; width: 100%; font-size: 13px; }
 th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
 th { color: var(--ink2); font-weight: 600; }
@@ -57,6 +58,20 @@ tbody tr.klick:hover { background: var(--hover); }
 .tag { border: 1px solid var(--axis); border-radius: 4px; padding: 0 5px; font-size: 11px; color: var(--ink2); white-space: nowrap; }
 .scroll { max-height: 420px; overflow: auto; }
 .hint { color: var(--ink2); font-size: 12px; margin: 6px 0 0; }
+.lese { background: var(--hover); border-radius: 8px; padding: 10px 12px; margin: 10px 0 0; font-size: 14px; }
+.lese b.k { color: var(--ink); }
+.story p { margin: 0 0 8px; max-width: 80ch; }
+.story ul { margin: 6px 0 10px 18px; padding: 0; max-width: 80ch; }
+.story li { margin-bottom: 4px; }
+details { margin: 6px 0; } summary { cursor: pointer; color: var(--ink2); }
+details dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 8px 0 0; max-width: 90ch; }
+details dt { font-weight: 600; } details dd { margin: 0; color: var(--ink2); }
+.ampel { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--ink2); margin-top: 6px; }
+.ampel i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+.verdict { border-left: 4px solid var(--ok); background: var(--hover); border-radius: 0 8px 8px 0; padding: 8px 14px; margin: 0 0 12px; }
+.verdict ul { margin: 4px 0 0 18px; padding: 0; } .verdict li { margin-bottom: 3px; }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; }
+.c-ok { background: rgba(var(--ok-rgb), .22); } .c-warn { background: rgba(var(--warn-rgb), .30); } .c-bad { background: rgba(var(--bad-rgb), .32); }
 @media (max-width: 640px) { #main { height: 560px; } .kpi .v { font-size: 24px; } }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
@@ -66,39 +81,67 @@ tbody tr.klick:hover { background: var(--hover); }
   <h1>Radon-Dashboard</h1>
   <p class="sub" id="sub"></p>
 
+  <section class="card story">
+    <h2>Kurz erklärt</h2>
+    <p>In einem Haus wurde von März bis Oktober 2026 <b>Radon</b> gemessen, ein unsichtbares, geruchloses Gas aus dem Boden. Wer es über Jahre in großer Menge einatmet, hat ein höheres Lungenkrebs-Risiko. Am 24.08. wurde eine <b>Überdruck-Anlage</b> eingebaut, die Bodenluft aus dem Haus fernhalten soll. Die Frage: <b>Hat sie geholfen, oder war das unnötig?</b></p>
+    <ul id="story-list"></ul>
+    <div class="ampel" aria-label="Ampel-Legende"><span><i style="background:var(--ok)"></i>grün: unter 100 Bq/m³, unbedenklich</span><span><i style="background:var(--warn)"></i>gelb: 100 bis 300, erhöht</span><span><i style="background:var(--bad)"></i>rot: über 300, hoch</span></div>
+    <details><summary>Mini-Lexikon: Bq/m³, Referenzwert, CO₂, Überdruck, Messfehler</summary>
+      <dl><dt>Bq/m³</dt><dd>Becquerel pro Kubikmeter Luft: Maß für die Radon-Menge. 30 ist wenig, 300 ist viel.</dd>
+      <dt>Referenzwert</dt><dd>100 (WHO) und 300 (Österreich). Gilt für den <b>Durchschnitt über ein Jahr</b>, nicht für einzelne Stunden.</dd>
+      <dt>CO₂</dt><dd>Gas, das wir ausatmen. Es zeigt, ob jemand im Raum ist und ob gelüftet wurde: nahe 400 = niemand da oder frisch gelüftet.</dd>
+      <dt>Überdruck-Anlage</dt><dd>bläst etwas mehr Luft ins Haus als hinausgeht, damit keine Bodenluft hereingesaugt wird.</dd>
+      <dt>Messfehler ±30</dt><dd>Die Sensoren liegen bis zu 30 Bq/m³ daneben. Unterschiede unter 30 sind nicht sicher.</dd></dl>
+    </details>
+  </section>
+
   <div class="kpis" id="kpis"></div>
 
   <section class="card">
     <h2>Verlauf aller Sensoren</h2>
-    <p class="hint" style="margin:0 0 10px">Stundenmittel. Ziehen = zoomen, Doppelklick = Ausgangsansicht. Phasen sind Hypothesen aus den Daten, noch nicht von Hr. Grimmer bestätigt.</p>
+    <p class="hint" style="margin:0 0 10px">Wähle einen Zeitraum, dann steht unter dem Diagramm, was man sieht. Ziehen = zoomen, Doppelklick = Ausgangsansicht. Die Linien zeigen Radon in den Räumen, darunter CO₂ (zeigt Anwesenheit und Lüften) und die Außentemperatur.</p>
     <div class="row"><span class="lbl">Zeitraum</span><span id="presets"></span></div>
     <div class="row"><span class="lbl">Räume</span><span id="chips"></span></div>
     <div class="row"><span class="lbl">Einblenden</span><span id="ovs"></span></div>
     <div class="row"><span class="lbl">Auflösung</span><select id="res" aria-label="Zeitauflösung"><option value="auto">automatisch (je nach Zoom)</option><option value="h">Stundenmittel</option><option value="h6">6-Stunden-Median</option><option value="d">Tagesmedian</option></select> <span class="hint" id="resinfo" style="margin:0"></span></div>
     <div id="main" role="img" aria-label="Zeitreihe: Radon je Raum, CO₂ und Außentemperatur"></div>
+    <div class="lese" id="lesehilfe" aria-live="polite"></div>
   </section>
 
   <section class="card">
     <h2>Ereignisse und Phasen</h2>
     <p class="hint" style="margin:0 0 10px">Zeile anklicken = Verlauf springt zu diesem Zeitpunkt. Radon-Ereignis: Stundenwert über 3× gleitender 7-Tage-Median + 30 und über 100 Bq/m³.</p>
     <div class="row"><span class="lbl">Anzeigen</span><span id="evfilter"></span></div>
-    <div class="scroll"><table id="evtab"><thead><tr><th class="num">#</th><th>Art</th><th>Von</th><th>Bis</th><th>Räume</th><th class="num">Peak [Bq/m³]</th><th>Notiz</th></tr></thead><tbody></tbody></table></div>
+    <div class="scroll"><table id="evtab"><thead><tr><th class="num">#</th><th>Art</th><th>Von</th><th>Bis</th><th>Räume</th><th class="num">Höchster Wert [Bq/m³]</th><th>Einordnung</th><th>Notiz</th></tr></thead><tbody></tbody></table></div>
   </section>
 
   <section class="card">
-    <h2>Tagesgang: Stunde × Tag</h2>
-    <p class="hint" style="margin:0 0 10px">Zeigt, wann im Tag Radon steigt. Fenster-Phase, Urlaub und Wendepunkt sind als Muster erkennbar. Tag anklicken = Verlauf oben springt dorthin.</p>
-    <div class="row"><span class="lbl">Raum</span><select id="heatroom" aria-label="Raum für Tagesgang"></select></div>
-    <div id="heat" role="img" aria-label="Heatmap: Radon nach Tag und Stunde"></div>
+    <h2>Hat die Anlage geholfen?</h2>
+    <div class="verdict"><b>Antwort: teils, teils.</b>
+      <ul><li><b>Ja:</b> Hohe Spitzen und Bodenluft an der Außenwand sind nach dem Einbau verschwunden.</li>
+      <li><b>Aber:</b> Im Alltag war Radon schon vorher meist harmlos (Durchschnitt unter 100).</li>
+      <li><b>Das Dauer-Lüften</b> in den ersten Tagen nach dem Einbau war nicht nötig.</li>
+      <li><b>Offen:</b> Winter, ein zweiter Urlaub und die Kosten stehen nicht in den Daten.</li></ul></div>
+    <div id="wk1" role="img" aria-label="Wochenanteil der Stunden über 100 Bq/m³"></div>
+    <div class="lese" id="wk1t"></div>
+    <div id="wk2" role="img" aria-label="Sockel-Sensor minus Raummitte je Woche"></div>
+    <div class="lese"><b class="k">Was sieht man?</b> Zwei Sensoren in der Küche: einer am Boden an der Ost-Außenwand, einer mitten im Raum. Ist der Wand-Wert höher (Linie über 0), kommt Bodenluft herein. Im Sommer war das so (bis 78), seit dem Einbau liegt die Linie bei 0. Ein Teil des Rückgangs begann schon Mitte August, die Jahreszeit spielt also mit.</div>
   </section>
 
   <section class="card">
-    <h2>Median je Phase und Raum [Bq/m³] (Tabellenansicht)</h2>
+    <h2>Ein typischer Tag: wann ist Radon am höchsten?</h2>
+    <div class="row"><span class="lbl">Raum</span><select id="tagroom" aria-label="Raum für typischen Tag"></select></div>
+    <div id="tag" role="img" aria-label="Typischer Tagesverlauf vor und nach der Anlage"></div>
+    <div class="lese" id="tagtext"></div>
+  </section>
+
+  <section class="card">
+    <h2>Typischer Wert je Phase und Raum [Bq/m³]</h2>
     <div class="scroll"><table id="pertab"></table></div>
-    <p class="hint">Median der Stundenwerte. Phasengrenzen siehe Befunde. Der Referenzwert (300 Bq/m³) gilt als Jahresmittel, nicht für Einzelstunden.</p>
+    <p class="hint">Median der Stundenwerte, Farbe = Ampel (grün unter 100, gelb 100–300, rot über 300). Referenzwerte gelten als Jahresmittel, nicht für Einzelstunden. Phasengrenzen siehe <a href="befunde.html" style="color:inherit">Befunde</a>.</p>
   </section>
 
-  <p class="hint">Daten: radon_sample_data.csv (Hr. Grimmer), Auswertung in <code>analyse/</code>. Hintergrund und Befunde: <a href="index.html" style="color:inherit">Doku</a>.</p>
+  <p class="hint">Daten: radon_sample_data.csv (Hr. Grimmer), Auswertung in <code>analyse/</code>. Mehr: <a href="einfach.html" style="color:inherit">Einfach erklärt</a> · <a href="wirkung.html" style="color:inherit">Wirkung der Anlage</a> · <a href="index.html" style="color:inherit">Doku</a>.</p>
 </main>
 
 <script>
@@ -118,8 +161,8 @@ const ROOM = Object.fromEntries(D.raeume.map(r => [r.k, r]));
 
 // ---------- Ereignisliste (Phasen + Wendepunkt + Radon-Ereignisse + Resets), nummeriert
 const ROWS = [
-  ...D.phasen.map(p => ({art: 'Phase', von: p.von, bis: p.bis, raeume: '', peak: null, notiz: p.name + '. ' + p.frage})),
-  {art: 'Wendepunkt', von: D.wende, bis: D.wende, raeume: '', peak: null, notiz: 'Kandidat Überdruck-Anlage (Frage 4)'},
+  ...D.phasen.map(p => ({art: 'Phase', von: p.von, bis: p.bis, raeume: '', peak: null, notiz: p.notiz})),
+  {art: 'Wendepunkt', von: D.wende, bis: D.wende, raeume: '', peak: null, notiz: 'Überdruck-Anlage eingebaut (von Hr. Grimmer bestätigt)'},
   ...D.ereignisse].sort((a, b) => a.von.localeCompare(b.von)).map((e, i) => ({...e, nr: i + 1}));
 
 // ---------- Zustand
@@ -133,25 +176,33 @@ const main = document.getElementById('main');
   const k = D.kpi;
   document.getElementById('sub').innerHTML = `Messdaten ${dmy(D.start).slice(0, 6)}2026–13.10.2026 · ${k.zeilen.toLocaleString('de-AT')} Zeilen · 7 Radon-Sensoren, CO₂, Wetter`;
   const tile = (l, v, n) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="n">${n}</div></div>`;
+  const f1 = x => x.toLocaleString('de-AT', {maximumFractionDigits: 1});
   document.getElementById('kpis').innerHTML =
-    tile('Höchster Stundenwert', `${k.max_wert} <small>Bq/m³</small>`, `${k.max_raum}, ${k.max_zeit}`) +
-    tile('Urlaub (02.–06.08.), Wohnbereich', `${k.urlaub_wohn} <small>Bq/m³</small>`, `normal ${k.normal_wohn} Bq/m³ (25.08.–22.09.), ca. ×${Math.round(k.urlaub_wohn / k.normal_wohn)}`) +
-    tile('Technikraum-Median je Phase', `${k.keller_a} → ${k.keller_b} → ${k.keller_d} <small>Bq/m³</small>`, 'Fenster offen → Fenster zu → nach 24.08.') +
-    tile('Ereignisse', `${k.n_ereignisse} <small>+ ${k.n_resets} Sensor-Resets</small>`, 'automatisch erkannt, siehe Tabelle');
+    tile('Durchschnitt Wohnräume (vor der Anlage)', `${k.og_pre} <small>Bq/m³</small>`, 'ohne Urlaub. Referenzwerte: 100 (WHO), 300 (Österreich)') +
+    tile('Urlaub: Haus 6 Tage zu', `${k.urlaub_wohn} <small>Bq/m³</small>`, `normal ca. ${k.normal_wohn}, also ×${Math.round(k.urlaub_wohn / k.normal_wohn)}; nach Lüften in ~2 h wieder normal`) +
+    tile('Stunden über 100 Bq/m³', `${f1(k.p100_pre)} % → ${f1(k.p100_post)} %`, 'vor → nach Einbau der Anlage (24.08.)') +
+    tile('Ereignisse', `${k.n_ereignisse} <small>+ ${k.n_resets} Sensor-Resets</small>`, 'automatisch erkannt, siehe Tabelle unten');
+  document.getElementById('story-list').innerHTML =
+    `<li><b>Meist harmlos:</b> Die Wohnräume lagen im Durchschnitt bei ${k.og_pre} Bq/m³, also weit unter 100.</li>` +
+    `<li><b>Ausnahmen:</b> ganz am Anfang (Problem entdeckt) und im Urlaub, als das Haus 6 Tage geschlossen war (bis ${k.urlaub_wohn}).</li>` +
+    `<li><b>Nach dem Einbau:</b> Stunden über 100 Bq/m³ sanken von ${f1(k.p100_pre)} % auf ${f1(k.p100_post)} %.</li>`;
 })();
 
 // ---------- Steuerung
+const LESE_EIGEN = '<b class="k">Eigener Ausschnitt.</b> Wähle oben einen Zeitraum, dann erkläre ich, was man sieht.';
 const PRESETS = [
-  ['Gesamt', null], ['Fenster-Phase', ['2026-03-30 00:00', '2026-06-25 00:00']], ['Urlaub', ['2026-07-29 00:00', '2026-08-09 00:00']],
-  ['Keller-Sägezahn', ['2026-06-15 00:00', '2026-08-28 00:00']], ['Wendepunkt', ['2026-08-10 00:00', '2026-09-08 00:00']],
-  ['20.07.', ['2026-07-18 00:00', '2026-07-24 00:00']]];
+  ['Gesamt', null, '<b class="k">Was sieht man?</b> Fast immer liegen die Wohnräume im grünen Bereich (unter 100). Zwei Ausreißer: ganz am Anfang (März, Problem entdeckt) und der <b>Urlaub</b>, als das Haus geschlossen war. Rechts von der gestrichelten Linie (Anlage eingebaut, 24.08.) gibt es keine Spitzen mehr. Die grauen Streifen oben sind automatisch erkannte Ereignisse, die Nummern stehen in der Tabelle unten.'],
+  ['Überwiegend gelüftet', ['2026-03-30 00:00', '2026-06-25 00:00'], '<b class="k">Was sieht man?</b> In dieser Zeit wurde unregelmäßig, aber überwiegend gelüftet (laut Hr. Grimmer). Die Wohnräume liegen meist bei 20 bis 40 mit kurzen Nachtspitzen. Der Keller (Technikraum, grün) ist sehr niedrig, weil dort viel Luft ausgetauscht wurde. Am 22.–27.05. stieg der Keller, weil länger nicht gelüftet wurde.'],
+  ['Urlaub', ['2026-07-29 00:00', '2026-08-09 00:00'], '<b class="k">Was sieht man?</b> Grau = Urlaub. Das CO₂ (Mitte) ist flach bei etwa 410: niemand ist zuhause, nichts wird gelüftet. Radon steigt in allen Räumen auf über 300. Am 6.8. gegen 19–20 Uhr kommt jemand zurück und lüftet: nach etwa 2 Stunden ist Radon wieder normal. <b>Das zeigt: ohne Lüften sammelt sich Radon an, Lüften wirkt sofort.</b>'],
+  ['Einbau der Anlage', ['2026-08-10 00:00', '2026-09-08 00:00'], '<b class="k">Was sieht man?</b> Gestrichelte Linie = Anlage eingebaut (24.08.). Links davon gibt es immer wieder Spitzen, rechts verlaufen alle Räume gleichmäßig niedrig. Die Spitze am 23.08. nachts, einen Tag vor dem Einbau, ist ungeklärt. Der Keller ist laut Hr. Grimmer weniger wichtig.'],
+  ['20.07.', ['2026-07-18 00:00', '2026-07-24 00:00'], '<b class="k">Was sieht man?</b> Am 20.07. steigen alle Wohnräume tagsüber auf bis zu 250, sonst sind sie tagsüber niedrig. Laut Hr. Grimmer waren wahrscheinlich die Fenster zu. Der Keller bleibt dabei ruhig.']];
 const presetEl = document.getElementById('presets');
 PRESETS.forEach(([name, r], i) => {
   const b = document.createElement('button'); b.textContent = name; b.dataset.i = i;
   b.onclick = () => setRange(r, i);
   presetEl.appendChild(b); presetEl.appendChild(document.createTextNode(' '));
 });
-function markActive(i) { [...presetEl.children].forEach(b => b.classList && b.classList.toggle('act', i !== null && +b.dataset.i === i)); }
+function markActive(i) { [...presetEl.children].forEach(b => b.classList && b.classList.toggle('act', i !== null && +b.dataset.i === i)); document.getElementById('lesehilfe').innerHTML = i === null ? LESE_EIGEN : PRESETS[i][2]; }
 
 const chipEl = document.getElementById('chips');
 D.raeume.forEach(r => {
@@ -165,7 +216,7 @@ const all = document.createElement('button'); all.textContent = 'alle';
 all.onclick = () => { D.raeume.forEach(r => on.add(r.k)); [...chipEl.querySelectorAll('.chip')].forEach(b => b.setAttribute('aria-pressed', 'true')); draw(); };
 chipEl.appendChild(all);
 
-const OVS = [['phasen', 'Phasen'], ['ereig', 'Radon-Ereignisse'], ['resets', 'Sensor-Resets'], ['ref', 'Referenzwert 300'], ['log', 'logarithmische Skala']];
+const OVS = [['phasen', 'Phasen'], ['ereig', 'Radon-Ereignisse'], ['resets', 'Sensor-Resets'], ['ref', 'Ampel-Hintergrund (100 / 300)'], ['log', 'logarithmische Skala']];
 const ovEl = document.getElementById('ovs');
 OVS.forEach(([k, name]) => {
   const l = document.createElement('label'); l.className = 'ck';
@@ -240,7 +291,7 @@ function overlay() {
       lab(i ? p.bis : fmt((idxOf(p.von) + idxOf(p.bis)) / 2), p.name, {yshift: 16, xanchor: i ? 'right' : 'center'});
     });
     sh.push({type: 'line', xref: 'x', yref: 'paper', x0: D.wende, x1: D.wende, y0: 0, y1: 1, line: {color: th.ink, width: 1.2, dash: 'dash'}});
-    lab(D.wende, 'Wendepunkt-Kandidat 24.08.', {yshift: 16, xanchor: 'left'});
+    lab(D.wende, 'Anlage eingebaut 24.08.', {yshift: 16, xanchor: 'left'});
   }
   ROWS.forEach(e => {
     const isEv = e.art === 'Radon-Ereignis', isRs = e.art === 'Sensor-Reset';
@@ -255,8 +306,10 @@ function overlay() {
     if (zoomed) lab(mid, (isRs ? 'R' : '') + e.nr, {hovertext: `#${e.nr} ${e.art}<br>${dmy(e.von)} – ${dmy(e.bis)}<br>${e.raeume}${e.peak ? '<br>Peak ' + e.peak + ' Bq/m³' : ''}<br>${e.notiz || ''}`, captureevents: true});
   });
   if (ov.ref) {
-    sh.push({type: 'line', xref: 'paper', yref: 'y', x0: 0, x1: 1, y0: 300, y1: 300, line: {color: th.muted, width: 1, dash: 'dot'}});
-    an.push({xref: 'paper', yref: 'y', x: .995, xanchor: 'right', y: 300, yanchor: 'bottom', showarrow: false, text: 'Referenzwert 300 (gilt als Jahresmittel)', font: {size: 10, color: th.muted}});
+    [[0, 100, '12,163,12', .07], [100, 300, '250,178,25', .10], [300, 5000, '208,59,59', .09]].forEach(([a, b, c, al]) =>
+      sh.push({type: 'rect', xref: 'paper', yref: 'y', x0: 0, x1: 1, y0: a, y1: b, layer: 'below', line: {width: 0}, fillcolor: `rgba(${c},${al})`}));
+    [[88, '● grün: unter 100', 'rgb(12,163,12)'], [200, '● gelb: 100–300', th.dark ? 'rgb(250,178,25)' : 'rgb(160,110,0)'], [420, '● rot: über 300', 'rgb(208,59,59)']].forEach(([y, t, c]) =>
+      an.push({xref: 'paper', yref: 'y', x: .997, xanchor: 'right', y, yanchor: 'middle', showarrow: false, text: t, font: {size: 11, color: c}}));
   }
   Plotly.relayout(main, {shapes: sh, annotations: an});
 }
@@ -281,7 +334,7 @@ function bind() {
     const rc = resClass(); if (rc !== curRes) { curRes = rc; draw(); } else { fitY(); overlay(); }
   });
 }
-curRes = resClass(); draw(); bind();
+curRes = resClass(); draw(); bind(); markActive(0);
 
 // ---------- Ereignistabelle
 const evf = {Phase: true, Wendepunkt: true, 'Radon-Ereignis': true, 'Sensor-Reset': true};
@@ -291,11 +344,16 @@ Object.keys(evf).forEach(k => {
   l.firstChild.onchange = e => { evf[k] = e.target.checked; evTable(); };
   evfEl.appendChild(l); evfEl.appendChild(document.createTextNode(' '));
 });
+function einordnung(e) {
+  if (e.art === 'Radon-Ereignis') return e.peak >= 300 ? '<span class="dot" style="background:var(--bad)"></span>hoch' : e.peak >= 200 ? '<span class="dot" style="background:var(--warn)"></span>erhöht' : '<span class="dot" style="background:var(--warn)"></span>leicht erhöht';
+  if (e.art === 'Sensor-Reset') return 'technisch, kein Radon-Problem';
+  return '';
+}
 function evTable() {
   const tb = document.querySelector('#evtab tbody'); tb.innerHTML = '';
   ROWS.filter(e => evf[e.art]).forEach(e => {
     const tr = document.createElement('tr'); tr.className = 'klick'; tr.tabIndex = 0;
-    tr.innerHTML = `<td class="num">${e.nr}</td><td><span class="tag">${e.art}</span></td><td class="dt">${dmy(e.von)}</td><td class="dt">${e.bis === e.von ? "–" : dmy(e.bis)}</td><td>${e.raeume || ''}</td><td class="num">${e.peak ?? ''}</td><td>${e.notiz || ''}</td>`;
+    tr.innerHTML = `<td class="num">${e.nr}</td><td><span class="tag">${e.art}</span></td><td class="dt">${dmy(e.von)}</td><td class="dt">${e.bis === e.von ? "–" : dmy(e.bis)}</td><td>${e.raeume || ''}</td><td class="num">${e.peak ?? ''}</td><td>${einordnung(e)}</td><td>${e.notiz || ''}</td>`;
     const go = () => {
       const a = idxOf(e.von), b = idxOf(e.bis), mid = (a + b) / 2, half = Math.max(36, (b - a) / 2 + 24);
       setRange([fmt(Math.max(0, mid - half)), fmt(Math.min(N - 1, mid + half))], null);
@@ -307,43 +365,55 @@ function evTable() {
 }
 evTable();
 
-// ---------- Heatmap Stunde x Tag
-const heatSel = document.getElementById('heatroom');
-D.raeume.forEach(r => { const o = document.createElement('option'); o.value = r.k; o.textContent = r.name; heatSel.appendChild(o); });
-heatSel.value = 'technik';
-const heat = document.getElementById('heat');
-function drawHeat() {
-  const th = theme(), k = heatSel.value, nd = Math.floor(N / 24), days = [], z = Array.from({length: 24}, () => []), txt = Array.from({length: 24}, () => []);
-  for (let d = 0; d < nd; d++) {
-    const ds = T[d * 24].slice(0, 10); days.push(ds);
-    for (let h = 0; h < 24; h++) { const v = D.serien[k][d * 24 + h]; z[h].push(v == null ? null : Math.log10(1 + v));
-      txt[h].push(v == null ? 'keine Daten' : Math.round(v) + ' Bq/m³'); }
-  }
-  const ramp = ['#cde2fb', '#86b6ef', '#2a78d6', '#184f95', '#0d366b'], rs = th.dark ? ramp.slice().reverse() : ramp;
-  const ticks = [0, 10, 30, 100, 300];
-  const tr = {type: 'heatmap', x: days, y: Array.from({length: 24}, (_, i) => i), z, text: txt, zmin: 0, zmax: Math.log10(401), xgap: 0, ygap: 0, hoverongaps: false,
-    colorscale: rs.map((c, i) => [i / 4, c]), hovertemplate: '%{x} %{y}:00 Uhr<br>%{text}<extra>' + ROOM[k].name + '</extra>',
-    colorbar: {tickvals: ticks.map(v => Math.log10(1 + v)), ticktext: ticks.map(String), tickfont: {color: th.muted, size: 11}, title: {text: 'Bq/m³', font: {size: 11, color: th.muted}}, thickness: 12, outlinewidth: 0}};
-  const ax = e => Object.assign({gridcolor: th.grid, linecolor: th.axis, tickfont: {color: th.muted, size: 11}}, e);
-  const vline = x => ({type: 'line', xref: 'x', yref: 'paper', x0: x, x1: x, y0: 0, y1: 1, line: {color: th.ink, width: 1, dash: 'dash'}});
-  Plotly.react(heat, [tr], {paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: {family: FONT, color: th.ink2}, margin: {l: 48, r: 10, t: 10, b: 36},
-    xaxis: ax({type: 'date', tickformat: '%d.%m.'}), yaxis: ax({title: {text: 'Uhrzeit', font: {size: 11, color: th.muted}}, tickvals: [0, 6, 12, 18, 23], autorange: 'reversed'}),
-    hoverlabel: {bgcolor: th.surface, bordercolor: th.axis, font: {color: th.ink, size: 12}},
-    shapes: [vline(D.wende.slice(0, 10)), vline('2026-06-17'), vline(D.phasen[1].von.slice(0, 10)), vline(D.phasen[1].bis.slice(0, 10))]},
-    {responsive: true, displaylogo: false, displayModeBar: false}).then(() => {
-      if (!heat._b) { heat._b = true; heat.on('plotly_click', e => { const d = e.points[0].x; setRange([d + ' 00:00', fmt(Math.min(N - 1, idxOf(d + ' 00:00') + 72))], null); main.scrollIntoView({behavior: 'smooth', block: 'center'}); }); }
-    });
+// ---------- Typischer Tag
+const tagSel = document.getElementById('tagroom');
+[['og', 'Wohnbereich (Mittel aus Büro, Küche, Wohnzimmer, Schlafzimmer)'], ...D.raeume.map(r => [r.k, r.name])].forEach(([k, n]) => { const o = document.createElement('option'); o.value = k; o.textContent = n; tagSel.appendChild(o); });
+const tagEl = document.getElementById('tag');
+const base = (th, e) => Object.assign({paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: {family: FONT, color: th.ink2}, hoverlabel: {bgcolor: th.surface, bordercolor: th.axis, font: {color: th.ink, size: 12}}}, e);
+const axs = (th, e) => Object.assign({gridcolor: th.grid, linecolor: th.axis, zerolinecolor: th.axis, tickfont: {color: th.muted, size: 11}, automargin: true}, e);
+const ytit = (th, t) => ({text: t, font: {size: 11, color: th.muted}, standoff: 6});
+const hexA = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+function drawTag() {
+  const th = theme(), k = tagSel.value, d = D.tag[k], hr = Array.from({length: 24}, (_, i) => i), lab = hr.map(h => h + ':00');
+  const band = (lo, hi, c) => [{x: lab, y: lo, mode: 'lines', line: {width: 0}, hoverinfo: 'skip', showlegend: false, type: 'scatter'},
+    {x: lab, y: hi, mode: 'lines', line: {width: 0}, fill: 'tonexty', fillcolor: hexA(c, .18), hoverinfo: 'skip', showlegend: false, type: 'scatter'}];
+  const tr = [...band(d.pre25, d.pre75, th.s[1]), ...band(d.post25, d.post75, th.s[0]),
+    {x: lab, y: d.pre, type: 'scatter', mode: 'lines', name: 'vor der Anlage (01.04.–23.08., ohne Urlaub)', line: {width: 2.6, color: th.s[1]}, hovertemplate: '%{y:.0f} Bq/m³<extra>vor der Anlage</extra>'},
+    {x: lab, y: d.post, type: 'scatter', mode: 'lines', name: 'nach der Anlage (ab 24.08.)', line: {width: 2.6, color: th.s[0]}, hovertemplate: '%{y:.0f} Bq/m³<extra>nach der Anlage</extra>'}];
+  Plotly.react(tagEl, tr, base(th, {margin: {l: 56, r: 10, t: 10, b: 40}, hovermode: 'x unified', legend: {orientation: 'h', y: -0.22, font: {color: th.ink2, size: 12}},
+    xaxis: axs(th, {title: {text: 'Uhrzeit', font: {size: 11, color: th.muted}}, tickvals: [0, 3, 6, 9, 12, 15, 18, 21].map(h => h + ':00')}), yaxis: axs(th, {title: ytit(th, 'Radon [Bq/m³]'), rangemode: 'tozero'})}),
+    {responsive: true, displaylogo: false, displayModeBar: false});
+  const av = (a, f, t) => Math.round(a.slice(f, t + 1).reduce((x, y) => x + y, 0) / (t - f + 1));
+  document.getElementById('tagtext').innerHTML = `<b class="k">Was sieht man?</b> Für jede Uhrzeit der übliche Wert (Linie) und der Bereich, in dem die mittleren 50 % aller Tage lagen (Fläche). ` +
+    `<b>Nachts (2–7 Uhr)</b> liegt der übliche Wert vor der Anlage bei <b>${av(d.pre, 2, 7)}</b>, nach der Anlage bei <b>${av(d.post, 2, 7)}</b> Bq/m³; <b>tagsüber (12–17 Uhr)</b> bei ${av(d.pre, 12, 17)} bzw. ${av(d.post, 12, 17)}. ` +
+    `Die obere Grenze der Fläche (nachts) liegt vor der Anlage bei ${av(d.pre75, 2, 7)}, danach bei ${av(d.post75, 2, 7)}. ` +
+    `Nachts ist es meist höher, weil die Fenster zu sind und keine Luft ausgetauscht wird; tagsüber sinkt es durch Lüften (übliche Erklärung, nicht aus den Quellen geprüft). Der Keller (Technikraum, Werkstatt) war vor der Anlage stark vom Lüften abhängig und ist hier weniger aussagekräftig.`;
 }
-heatSel.onchange = drawHeat; drawHeat();
+tagSel.onchange = drawTag; drawTag();
 
-// ---------- Phasentabelle
+// ---------- Wirkung der Anlage (Wochenwerte)
+(function drawWirkung() {
+  const th = theme(), W = D.woche, x = W.map(w => w.t), inst = D.wende.slice(0, 10);
+  const post = W.map(w => idxOf(w.t + ' 00:00') - 6 * 24 >= idxOf(inst + ' 00:00'));
+  const cols = post.map(p => p ? th.s[0] : th.s[1]);
+  const vline = {type: 'line', xref: 'x', yref: 'paper', x0: inst, x1: inst, y0: 0, y1: 1, line: {color: th.ink, width: 1.2, dash: 'dash'}};
+  const ann = t => ({xref: 'x', yref: 'paper', x: inst, y: 1, yanchor: 'bottom', xanchor: 'left', showarrow: false, text: t, font: {size: 11, color: th.ink2}});
+  Plotly.react('wk1', [{type: 'bar', x, y: W.map(w => w.p100), marker: {color: cols}, hovertemplate: 'Woche bis %{x}<br>%{y:.1f} % der Stunden über 100 Bq/m³<extra></extra>', text: W.map((w, i) => post[i] && w.p100 === 0 ? '0 %' : ''), textposition: 'outside', textfont: {color: th.ink2, size: 11}}],
+    base(th, {margin: {l: 56, r: 10, t: 24, b: 30}, shapes: [vline], annotations: [ann('Anlage eingebaut')], bargap: .25, showlegend: false,
+      xaxis: axs(th, {type: 'date', tickformat: '%d.%m.'}), yaxis: axs(th, {title: ytit(th, 'Stunden über 100 Bq/m³ [%]'), rangemode: 'tozero'})}), {responsive: true, displaylogo: false, displayModeBar: false});
+  const f = D.kpi;
+  document.getElementById('wk1t').innerHTML = `<b class="k">Was sieht man?</b> Jede Säule ist eine Woche: Anteil der Stunden, in denen irgendein Wohnraum über 100 Bq/m³ lag (orange = vor der Anlage, blau = danach). Vor dem Einbau in fast jeder Woche einige Prozent (insgesamt ${f.p100_pre} %), danach praktisch nie (${f.p100_post} %, eine einzige Stunde in 7 Wochen). Die ersten Tage nach dem Einbau sind durch das Panik-Lüften nicht aussagekräftig, die Wochen danach schon.`;
+  Plotly.react('wk2', [{type: 'scatter', mode: 'lines+markers', x, y: W.map(w => w.exc), line: {width: 2.4, color: th.s[1]}, marker: {size: 6}, connectgaps: false, hovertemplate: 'Woche bis %{x}<br>Wand minus Raummitte: %{y:.0f} Bq/m³<extra></extra>'}],
+    base(th, {margin: {l: 56, r: 10, t: 24, b: 30}, shapes: [vline], annotations: [ann('Anlage eingebaut')], showlegend: false,
+      xaxis: axs(th, {type: 'date', tickformat: '%d.%m.'}), yaxis: axs(th, {title: ytit(th, 'Wand minus Raummitte [Bq/m³]'), zeroline: true})}), {responsive: true, displaylogo: false, displayModeBar: false});
+})();
+
+// ---------- Phasentabelle (Ampel)
 (function () {
   const order = ['wohn', 'kueche', 'buero', 'schlaf', 'sockel', 'technik', 'werk'];
-  const rgb = theme().seq;
   const h = '<thead><tr><th>Phase</th><th>Zeitraum</th>' + order.map(k => `<th class="num">${ROOM[k].name}</th>`).join('') + '</tr></thead>';
-  const b = D.perioden.map(p => '<tr><td>' + p.name + '</td><td>' + p.zeitraum + '</td>' + order.map(k => {
-    const v = p[k], a = v == null ? 0 : Math.min(.6, Math.log10(1 + v) / Math.log10(401) * .6);
-    return `<td class="num" style="background:rgba(${rgb},${a.toFixed(2)})">${v ?? '–'}</td>`; }).join('') + '</tr>').join('');
+  const cls = v => v == null ? '' : v > 300 ? 'c-bad' : v >= 100 ? 'c-warn' : 'c-ok';
+  const b = D.perioden.map(p => '<tr><td>' + p.name + '</td><td>' + p.zeitraum + '</td>' + order.map(k => `<td class="num ${cls(p[k])}">${p[k] ?? '–'}</td>`).join('') + '</tr>').join('');
   document.getElementById('pertab').innerHTML = h + '<tbody>' + b + '</tbody>';
 })();
 
