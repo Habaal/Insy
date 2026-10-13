@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radon-Dashboard</title>
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,.10); --hover: rgba(11,11,11,.05);
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #4a3aa7;
+  --seq-rgb: 42,120,214; --wash: 137,135,129;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,.10); --hover: rgba(255,255,255,.07);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9;
+    --seq-rgb: 57,135,229;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1240px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { font-size: 24px; margin: 0 0 2px; }
+h2 { font-size: 16px; margin: 0 0 4px; }
+.sub { color: var(--ink2); margin: 0 0 16px; }
+.sub a { color: var(--ink2); }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; }
+.kpi .l { color: var(--ink2); font-size: 12px; }
+.kpi .v { font-size: 28px; font-weight: 600; line-height: 1.2; margin: 2px 0; }
+.kpi .v small { font-size: 13px; font-weight: 400; color: var(--ink2); }
+.kpi .n { color: var(--ink2); font-size: 12px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.row .lbl { color: var(--ink2); font-size: 12px; min-width: 76px; }
+button, select { font: inherit; color: var(--ink); background: transparent; border: 1px solid var(--axis); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+button:hover { background: var(--hover); }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
+button[aria-pressed="true"], button.act { border-color: var(--ink); font-weight: 600; }
+.chip { display: inline-flex; align-items: center; gap: 6px; }
+.chip i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; opacity: .35; }
+.chip[aria-pressed="true"] i { opacity: 1; }
+label.ck { display: inline-flex; align-items: center; gap: 5px; color: var(--ink2); cursor: pointer; }
+#main { height: 660px; }
+#heat { height: 360px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { color: var(--ink2); font-weight: 600; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.dt { white-space: nowrap; }
+tbody tr.klick { cursor: pointer; }
+tbody tr.klick:hover { background: var(--hover); }
+.tag { border: 1px solid var(--axis); border-radius: 4px; padding: 0 5px; font-size: 11px; color: var(--ink2); white-space: nowrap; }
+.scroll { max-height: 420px; overflow: auto; }
+.hint { color: var(--ink2); font-size: 12px; margin: 6px 0 0; }
+@media (max-width: 640px) { #main { height: 560px; } .kpi .v { font-size: 24px; } }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
+</head>
+<body>
+<main>
+  <h1>Radon-Dashboard</h1>
+  <p class="sub" id="sub"></p>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section class="card">
+    <h2>Verlauf aller Sensoren</h2>
+    <p class="hint" style="margin:0 0 10px">Stundenmittel. Ziehen = zoomen, Doppelklick = Ausgangsansicht. Phasen sind Hypothesen aus den Daten, noch nicht von Hr. Grimmer bestätigt.</p>
+    <div class="row"><span class="lbl">Zeitraum</span><span id="presets"></span></div>
+    <div class="row"><span class="lbl">Räume</span><span id="chips"></span></div>
+    <div class="row"><span class="lbl">Einblenden</span><span id="ovs"></span></div>
+    <div class="row"><span class="lbl">Auflösung</span><select id="res" aria-label="Zeitauflösung"><option value="auto">automatisch (je nach Zoom)</option><option value="h">Stundenmittel</option><option value="h6">6-Stunden-Median</option><option value="d">Tagesmedian</option></select> <span class="hint" id="resinfo" style="margin:0"></span></div>
+    <div id="main" role="img" aria-label="Zeitreihe: Radon je Raum, CO₂ und Außentemperatur"></div>
+  </section>
+
+  <section class="card">
+    <h2>Ereignisse und Phasen</h2>
+    <p class="hint" style="margin:0 0 10px">Zeile anklicken = Verlauf springt zu diesem Zeitpunkt. Radon-Ereignis: Stundenwert über 3× gleitender 7-Tage-Median + 30 und über 100 Bq/m³.</p>
+    <div class="row"><span class="lbl">Anzeigen</span><span id="evfilter"></span></div>
+    <div class="scroll"><table id="evtab"><thead><tr><th class="num">#</th><th>Art</th><th>Von</th><th>Bis</th><th>Räume</th><th class="num">Peak [Bq/m³]</th><th>Notiz</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Tagesgang: Stunde × Tag</h2>
+    <p class="hint" style="margin:0 0 10px">Zeigt, wann im Tag Radon steigt. Fenster-Phase, Urlaub und Wendepunkt sind als Muster erkennbar. Tag anklicken = Verlauf oben springt dorthin.</p>
+    <div class="row"><span class="lbl">Raum</span><select id="heatroom" aria-label="Raum für Tagesgang"></select></div>
+    <div id="heat" role="img" aria-label="Heatmap: Radon nach Tag und Stunde"></div>
+  </section>
+
+  <section class="card">
+    <h2>Median je Phase und Raum [Bq/m³] (Tabellenansicht)</h2>
+    <div class="scroll"><table id="pertab"></table></div>
+    <p class="hint">Median der Stundenwerte. Phasengrenzen siehe Befunde. Der Referenzwert (300 Bq/m³) gilt als Jahresmittel, nicht für Einzelstunden.</p>
+  </section>
+
+  <p class="hint">Daten: radon_sample_data.csv (Hr. Grimmer), Auswertung in <code>analyse/</code>. Hintergrund und Befunde: <a href="index.html" style="color:inherit">Doku</a>.</p>
+</main>
+
+<script>
+const D = /*__DATEN__*/null;
+const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif';
+const N = D.serien.wohn.length;
+const T0 = Date.UTC(2026, 2, 24);
+const fmt = i => new Date(T0 + Math.round(i) * 36e5).toISOString().slice(0, 16).replace('T', ' ');
+const T = Array.from({length: N}, (_, i) => fmt(i));
+const idxOf = s => (Date.parse(s.replace(' ', 'T').slice(0, 23) + 'Z') - T0) / 36e5;
+const dmy = s => s.slice(8, 10) + '.' + s.slice(5, 7) + '. ' + s.slice(11, 16);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const theme = () => ({ink: css('--ink'), ink2: css('--ink2'), muted: css('--muted'), grid: css('--grid'), axis: css('--axis'),
+  surface: css('--surface'), s: [1,2,3,4,5,6,7].map(i => css('--s' + i)), dark: matchMedia('(prefers-color-scheme: dark)').matches,
+  seq: css('--seq-rgb')});
+const ROOM = Object.fromEntries(D.raeume.map(r => [r.k, r]));
+
+// ---------- Ereignisliste (Phasen + Wendepunkt + Radon-Ereignisse + Resets), nummeriert
+const ROWS = [
+  ...D.phasen.map(p => ({art: 'Phase', von: p.von, bis: p.bis, raeume: '', peak: null, notiz: p.name + '. ' + p.frage})),
+  {art: 'Wendepunkt', von: D.wende, bis: D.wende, raeume: '', peak: null, notiz: 'Kandidat Überdruck-Anlage (Frage 4)'},
+  ...D.ereignisse].sort((a, b) => a.von.localeCompare(b.von)).map((e, i) => ({...e, nr: i + 1}));
+
+// ---------- Zustand
+const on = new Set(['wohn', 'sockel', 'technik']);
+const ov = {phasen: true, ereig: true, resets: true, ref: true, log: false};
+let curRange = null;
+const main = document.getElementById('main');
+
+// ---------- Kennzahlen
+(function () {
+  const k = D.kpi;
+  document.getElementById('sub').innerHTML = `Messdaten ${dmy(D.start).slice(0, 6)}2026–13.10.2026 · ${k.zeilen.toLocaleString('de-AT')} Zeilen · 7 Radon-Sensoren, CO₂, Wetter`;
+  const tile = (l, v, n) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="n">${n}</div></div>`;
+  document.getElementById('kpis').innerHTML =
+    tile('Höchster Stundenwert', `${k.max_wert} <small>Bq/m³</small>`, `${k.max_raum}, ${k.max_zeit}`) +
+    tile('Urlaub (02.–06.08.), Wohnbereich', `${k.urlaub_wohn} <small>Bq/m³</small>`, `normal ${k.normal_wohn} Bq/m³ (25.08.–22.09.), ca. ×${Math.round(k.urlaub_wohn / k.normal_wohn)}`) +
+    tile('Technikraum-Median je Phase', `${k.keller_a} → ${k.keller_b} → ${k.keller_d} <small>Bq/m³</small>`, 'Fenster offen → Fenster zu → nach 24.08.') +
+    tile('Ereignisse', `${k.n_ereignisse} <small>+ ${k.n_resets} Sensor-Resets</small>`, 'automatisch erkannt, siehe Tabelle');
+})();
+
+// ---------- Steuerung
+const PRESETS = [
+  ['Gesamt', null], ['Fenster-Phase', ['2026-03-30 00:00', '2026-06-25 00:00']], ['Urlaub', ['2026-07-29 00:00', '2026-08-09 00:00']],
+  ['Keller-Sägezahn', ['2026-06-15 00:00', '2026-08-28 00:00']], ['Wendepunkt', ['2026-08-10 00:00', '2026-09-08 00:00']],
+  ['20.07.', ['2026-07-18 00:00', '2026-07-24 00:00']]];
+const presetEl = document.getElementById('presets');
+PRESETS.forEach(([name, r], i) => {
+  const b = document.createElement('button'); b.textContent = name; b.dataset.i = i;
+  b.onclick = () => setRange(r, i);
+  presetEl.appendChild(b); presetEl.appendChild(document.createTextNode(' '));
+});
+function markActive(i) { [...presetEl.children].forEach(b => b.classList && b.classList.toggle('act', i !== null && +b.dataset.i === i)); }
+
+const chipEl = document.getElementById('chips');
+D.raeume.forEach(r => {
+  const b = document.createElement('button'); b.className = 'chip'; b.dataset.k = r.k;
+  b.innerHTML = `<i style="background:var(--s${r.slot})"></i>${r.name}`;
+  b.setAttribute('aria-pressed', on.has(r.k));
+  b.onclick = () => { on.has(r.k) ? on.delete(r.k) : on.add(r.k); b.setAttribute('aria-pressed', on.has(r.k)); draw(); };
+  chipEl.appendChild(b); chipEl.appendChild(document.createTextNode(' '));
+});
+const all = document.createElement('button'); all.textContent = 'alle';
+all.onclick = () => { D.raeume.forEach(r => on.add(r.k)); [...chipEl.querySelectorAll('.chip')].forEach(b => b.setAttribute('aria-pressed', 'true')); draw(); };
+chipEl.appendChild(all);
+
+const OVS = [['phasen', 'Phasen'], ['ereig', 'Radon-Ereignisse'], ['resets', 'Sensor-Resets'], ['ref', 'Referenzwert 300'], ['log', 'logarithmische Skala']];
+const ovEl = document.getElementById('ovs');
+OVS.forEach(([k, name]) => {
+  const l = document.createElement('label'); l.className = 'ck';
+  l.innerHTML = `<input type="checkbox" ${ov[k] ? 'checked' : ''}> ${name}`;
+  l.firstChild.onchange = e => { ov[k] = e.target.checked; k === 'log' ? draw() : overlay(); };
+  ovEl.appendChild(l); ovEl.appendChild(document.createTextNode(' '));
+});
+
+// ---------- Hauptdiagramm
+let res = 'auto', curRes = 'h'; const cache = {};
+const medOf = v => { v.sort((a, b) => a - b); const m = v.length >> 1; return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2; };
+function resClass() { if (res !== 'auto') return res; const d = (visibleHours()[1] - visibleHours()[0]) / 24; return d > 70 ? 'd' : d > 14 ? 'h6' : 'h'; }
+function ser(k) {
+  const key = k + curRes; if (cache[key]) return cache[key];
+  const n = {h: 1, h6: 6, d: 24}[curRes];
+  if (n === 1) return cache[key] = {x: T, y: D.serien[k]};
+  const x = [], y = [];
+  for (let i = 0; i < N; i += n) {
+    const v = []; for (let j = i; j < Math.min(N, i + n); j++) { const t = D.serien[k][j]; if (t != null) v.push(t); }
+    x.push(fmt(i + n / 2)); y.push(v.length >= Math.ceil(n / 2) ? Math.round(medOf(v) * 10) / 10 : null);
+  }
+  return cache[key] = {x, y};
+}
+document.getElementById('res').onchange = e => { res = e.target.value; curRes = resClass(); draw(); };
+function traces() {
+  const th = theme(), tr = [];
+  D.raeume.forEach(r => { if (!on.has(r.k)) return;
+    const sr = ser(r.k); tr.push({x: sr.x, y: sr.y, type: 'scatter', mode: 'lines', name: r.name, xaxis: 'x', yaxis: 'y', connectgaps: false,
+      line: {width: 1.5, color: th.s[r.slot - 1]}, hovertemplate: '%{y:.0f} Bq/m³<extra>' + r.name + '</extra>'}); });
+  [['co2k', 'kueche', 'CO₂ Küche'], ['co2s', 'schlaf', 'CO₂ Schlafzimmer']].forEach(([k, room, name]) =>
+    tr.push({x: ser(k).x, y: ser(k).y, type: 'scatter', mode: 'lines', name, xaxis: 'x2', yaxis: 'y2', connectgaps: false,
+      line: {width: 1.2, color: th.s[ROOM[room].slot - 1]}, hovertemplate: '%{y:.0f} ppm<extra>' + name + '</extra>'}));
+  tr.push({x: ser('taus').x, y: ser('taus').y, type: 'scatter', mode: 'lines', name: 'Außentemperatur', xaxis: 'x3', yaxis: 'y3', connectgaps: false,
+    line: {width: 1.2, color: th.ink2}, hovertemplate: '%{y:.1f} °C<extra>Außentemperatur</extra>'});
+  return tr;
+}
+function layout() {
+  const th = theme();
+  const ax = e => Object.assign({gridcolor: th.grid, linecolor: th.axis, zerolinecolor: th.axis, tickfont: {color: th.muted, size: 11}, automargin: true}, e);
+  const xs = e => ax(Object.assign({matches: 'x', showspikes: true, spikemode: 'across', spikethickness: 1, spikecolor: th.muted, spikedash: 'solid', showticklabels: false}, e));
+  const yt = t => ({text: t, font: {size: 11, color: th.muted}, standoff: 6});
+  return {
+    paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: {family: FONT, color: th.ink2},
+    margin: {l: 64, r: 16, t: 50, b: 36}, showlegend: false, hovermode: 'x unified', dragmode: 'zoom',
+    hoverlabel: {bgcolor: th.surface, bordercolor: th.axis, font: {color: th.ink, size: 12}},
+    xaxis: xs({anchor: 'y', range: curRange || [T[0], T[N - 1]]}),
+    xaxis2: xs({anchor: 'y2'}),
+    xaxis3: xs({anchor: 'y3', showticklabels: true, tickformat: '%d.%m.'}),
+    yaxis: ax({domain: [0.42, 1], anchor: 'x', title: yt('Radon [Bq/m³]'), type: ov.log ? 'log' : 'linear', rangemode: 'tozero'}),
+    yaxis2: ax({domain: [0.215, 0.35], anchor: 'x2', title: yt('CO₂ [ppm]'), rangemode: 'normal'}),
+    yaxis3: ax({domain: [0, 0.135], anchor: 'x3', title: yt('Außentemp. [°C]')}),
+    shapes: [], annotations: []};
+}
+function visibleHours() { const r = curRange ? curRange.map(idxOf) : [0, N - 1]; return r; }
+function fitY() {
+  if (ov.log) return;
+  const [a, b] = visibleHours();
+  let m = 0, c = 0;
+  const scan = (k, f) => { const s = ser(k); for (let i = 0; i < s.x.length; i++) { const t = idxOf(s.x[i]); if (t < a - 12 || t > b + 12) continue; const v = s.y[i]; if (v != null) f(v); } };
+  on.forEach(k => scan(k, v => { if (v > m) m = v; }));
+  ['co2k', 'co2s'].forEach(k => scan(k, v => { if (v > c) c = v; }));
+  const upd = {'yaxis.range': [0, Math.max(40, m * 1.08)], 'yaxis2.range': [380, Math.max(700, c * 1.05)]};
+  Plotly.relayout(main, upd);
+}
+function overlay() {
+  const th = theme(), sh = [], an = [];
+  const days = (visibleHours()[1] - visibleHours()[0]) / 24, zoomed = days < 45;
+  const lab = (x, text, o) => an.push(Object.assign({xref: 'x', yref: 'paper', x, y: 1, yanchor: 'bottom', showarrow: false, text, font: {size: 11, color: th.ink2}}, o));
+  if (ov.phasen) {
+    D.phasen.forEach((p, i) => {
+      sh.push({type: 'rect', xref: 'x', yref: 'paper', x0: p.von, x1: p.bis, y0: 0, y1: 1, layer: 'below', line: {width: 0}, fillcolor: `rgba(137,135,129,${i ? .24 : .12})`});
+      lab(i ? p.bis : fmt((idxOf(p.von) + idxOf(p.bis)) / 2), p.name, {yshift: 16, xanchor: i ? 'right' : 'center'});
+    });
+    sh.push({type: 'line', xref: 'x', yref: 'paper', x0: D.wende, x1: D.wende, y0: 0, y1: 1, line: {color: th.ink, width: 1.2, dash: 'dash'}});
+    lab(D.wende, 'Wendepunkt-Kandidat 24.08.', {yshift: 16, xanchor: 'left'});
+  }
+  ROWS.forEach(e => {
+    const isEv = e.art === 'Radon-Ereignis', isRs = e.art === 'Sensor-Reset';
+    if ((isEv && !ov.ereig) || (isRs && !ov.resets) || !(isEv || isRs)) return;
+    const mid = fmt((idxOf(e.von) + idxOf(e.bis)) / 2);
+    if (isEv) {
+      sh.push({type: 'rect', xref: 'x', yref: 'paper', x0: e.von, x1: e.bis, y0: .965, y1: 1, line: {width: 0}, fillcolor: th.ink2, opacity: .45});
+      sh.push({type: 'line', xref: 'x', yref: 'paper', x0: mid, x1: mid, y0: .93, y1: 1, line: {color: th.ink2, width: 2}});
+    } else {
+      sh.push({type: 'line', xref: 'x', yref: 'paper', x0: mid, x1: mid, y0: 0, y1: 1, line: {color: th.muted, width: 1, dash: 'dot'}});
+    }
+    if (zoomed) lab(mid, (isRs ? 'R' : '') + e.nr, {hovertext: `#${e.nr} ${e.art}<br>${dmy(e.von)} – ${dmy(e.bis)}<br>${e.raeume}${e.peak ? '<br>Peak ' + e.peak + ' Bq/m³' : ''}<br>${e.notiz || ''}`, captureevents: true});
+  });
+  if (ov.ref) {
+    sh.push({type: 'line', xref: 'paper', yref: 'y', x0: 0, x1: 1, y0: 300, y1: 300, line: {color: th.muted, width: 1, dash: 'dot'}});
+    an.push({xref: 'paper', yref: 'y', x: .995, xanchor: 'right', y: 300, yanchor: 'bottom', showarrow: false, text: 'Referenzwert 300 (gilt als Jahresmittel)', font: {size: 10, color: th.muted}});
+  }
+  Plotly.relayout(main, {shapes: sh, annotations: an});
+}
+function draw() {
+  document.getElementById('resinfo').textContent = {h: 'Stundenmittel', h6: '6-Stunden-Median', d: 'Tagesmedian'}[curRes] + ' angezeigt';
+  Plotly.react(main, traces(), layout(), {responsive: true, displaylogo: false, modeBarButtonsToRemove: ['select2d', 'lasso2d']}).then(() => { fitY(); overlay(); });
+}
+function setRange(r, i) {
+  curRange = r;
+  const p = r ? Plotly.relayout(main, {'xaxis.range': r}) : Plotly.relayout(main, {'xaxis.autorange': true, 'yaxis.autorange': true, 'yaxis2.autorange': true});
+  p.then(() => markActive(i));
+}
+let bound = false;
+function bind() {
+  if (bound) return; bound = true;
+  main.on('plotly_relayout', ev => {
+    const k = Object.keys(ev).find(x => /^xaxis\d*\.range(\[0\])?$/.test(x));
+    if (k) { const m = k.match(/^(xaxis\d*)\.range/)[1]; curRange = Array.isArray(ev[m + '.range']) ? ev[m + '.range'] : [ev[m + '.range[0]'], ev[m + '.range[1]']]; }
+    else if (Object.keys(ev).some(x => /^xaxis\d*\.autorange$/.test(x))) curRange = null;
+    else return;
+    markActive(null);
+    const rc = resClass(); if (rc !== curRes) { curRes = rc; draw(); } else { fitY(); overlay(); }
+  });
+}
+curRes = resClass(); draw(); bind();
+
+// ---------- Ereignistabelle
+const evf = {Phase: true, Wendepunkt: true, 'Radon-Ereignis': true, 'Sensor-Reset': true};
+const evfEl = document.getElementById('evfilter');
+Object.keys(evf).forEach(k => {
+  const l = document.createElement('label'); l.className = 'ck'; l.innerHTML = `<input type="checkbox" checked> ${k}`;
+  l.firstChild.onchange = e => { evf[k] = e.target.checked; evTable(); };
+  evfEl.appendChild(l); evfEl.appendChild(document.createTextNode(' '));
+});
+function evTable() {
+  const tb = document.querySelector('#evtab tbody'); tb.innerHTML = '';
+  ROWS.filter(e => evf[e.art]).forEach(e => {
+    const tr = document.createElement('tr'); tr.className = 'klick'; tr.tabIndex = 0;
+    tr.innerHTML = `<td class="num">${e.nr}</td><td><span class="tag">${e.art}</span></td><td class="dt">${dmy(e.von)}</td><td class="dt">${e.bis === e.von ? "–" : dmy(e.bis)}</td><td>${e.raeume || ''}</td><td class="num">${e.peak ?? ''}</td><td>${e.notiz || ''}</td>`;
+    const go = () => {
+      const a = idxOf(e.von), b = idxOf(e.bis), mid = (a + b) / 2, half = Math.max(36, (b - a) / 2 + 24);
+      setRange([fmt(Math.max(0, mid - half)), fmt(Math.min(N - 1, mid + half))], null);
+      main.scrollIntoView({behavior: 'smooth', block: 'center'});
+    };
+    tr.onclick = go; tr.onkeydown = ev => { if (ev.key === 'Enter') go(); };
+    tb.appendChild(tr);
+  });
+}
+evTable();
+
+// ---------- Heatmap Stunde x Tag
+const heatSel = document.getElementById('heatroom');
+D.raeume.forEach(r => { const o = document.createElement('option'); o.value = r.k; o.textContent = r.name; heatSel.appendChild(o); });
+heatSel.value = 'technik';
+const heat = document.getElementById('heat');
+function drawHeat() {
+  const th = theme(), k = heatSel.value, nd = Math.floor(N / 24), days = [], z = Array.from({length: 24}, () => []), txt = Array.from({length: 24}, () => []);
+  for (let d = 0; d < nd; d++) {
+    const ds = T[d * 24].slice(0, 10); days.push(ds);
+    for (let h = 0; h < 24; h++) { const v = D.serien[k][d * 24 + h]; z[h].push(v == null ? null : Math.log10(1 + v));
+      txt[h].push(v == null ? 'keine Daten' : Math.round(v) + ' Bq/m³'); }
+  }
+  const ramp = ['#cde2fb', '#86b6ef', '#2a78d6', '#184f95', '#0d366b'], rs = th.dark ? ramp.slice().reverse() : ramp;
+  const ticks = [0, 10, 30, 100, 300];
+  const tr = {type: 'heatmap', x: days, y: Array.from({length: 24}, (_, i) => i), z, text: txt, zmin: 0, zmax: Math.log10(401), xgap: 0, ygap: 0, hoverongaps: false,
+    colorscale: rs.map((c, i) => [i / 4, c]), hovertemplate: '%{x} %{y}:00 Uhr<br>%{text}<extra>' + ROOM[k].name + '</extra>',
+    colorbar: {tickvals: ticks.map(v => Math.log10(1 + v)), ticktext: ticks.map(String), tickfont: {color: th.muted, size: 11}, title: {text: 'Bq/m³', font: {size: 11, color: th.muted}}, thickness: 12, outlinewidth: 0}};
+  const ax = e => Object.assign({gridcolor: th.grid, linecolor: th.axis, tickfont: {color: th.muted, size: 11}}, e);
+  const vline = x => ({type: 'line', xref: 'x', yref: 'paper', x0: x, x1: x, y0: 0, y1: 1, line: {color: th.ink, width: 1, dash: 'dash'}});
+  Plotly.react(heat, [tr], {paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', font: {family: FONT, color: th.ink2}, margin: {l: 48, r: 10, t: 10, b: 36},
+    xaxis: ax({type: 'date', tickformat: '%d.%m.'}), yaxis: ax({title: {text: 'Uhrzeit', font: {size: 11, color: th.muted}}, tickvals: [0, 6, 12, 18, 23], autorange: 'reversed'}),
+    hoverlabel: {bgcolor: th.surface, bordercolor: th.axis, font: {color: th.ink, size: 12}},
+    shapes: [vline(D.wende.slice(0, 10)), vline('2026-06-17'), vline(D.phasen[1].von.slice(0, 10)), vline(D.phasen[1].bis.slice(0, 10))]},
+    {responsive: true, displaylogo: false, displayModeBar: false}).then(() => {
+      if (!heat._b) { heat._b = true; heat.on('plotly_click', e => { const d = e.points[0].x; setRange([d + ' 00:00', fmt(Math.min(N - 1, idxOf(d + ' 00:00') + 72))], null); main.scrollIntoView({behavior: 'smooth', block: 'center'}); }); }
+    });
+}
+heatSel.onchange = drawHeat; drawHeat();
+
+// ---------- Phasentabelle
+(function () {
+  const order = ['wohn', 'kueche', 'buero', 'schlaf', 'sockel', 'technik', 'werk'];
+  const rgb = theme().seq;
+  const h = '<thead><tr><th>Phase</th><th>Zeitraum</th>' + order.map(k => `<th class="num">${ROOM[k].name}</th>`).join('') + '</tr></thead>';
+  const b = D.perioden.map(p => '<tr><td>' + p.name + '</td><td>' + p.zeitraum + '</td>' + order.map(k => {
+    const v = p[k], a = v == null ? 0 : Math.min(.6, Math.log10(1 + v) / Math.log10(401) * .6);
+    return `<td class="num" style="background:rgba(${rgb},${a.toFixed(2)})">${v ?? '–'}</td>`; }).join('') + '</tr>').join('');
+  document.getElementById('pertab').innerHTML = h + '<tbody>' + b + '</tbody>';
+})();
+
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => location.reload());
+</script>
+</body>
+</html>
