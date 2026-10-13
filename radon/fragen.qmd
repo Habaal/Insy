@@ -1,0 +1,18 @@
+---
+title: "Fragen an Hr. Grimmer"
+---
+
+Reihenfolge nach Wichtigkeit. Zeiten in Ortszeit.
+
+1. **Urlaub:** Stimmt 31.07. abends bis 06.08. gegen 19–20 Uhr? Gab es weitere Urlaube oder längere Abwesenheiten (besonders März bis Anfang Mai, wo es kein CO₂ gibt)?
+2. **Offene Fenster:** Welche zwei Fenster standen offen? Waren es die Keller-Fenster bei Technikraum und Werkstatt, und von wann bis wann (laut Daten Ende ca. 18.–22.06., Beginn vor dem 01.04.)?
+3. **22.–27.05.:** Keller-Radon steigt in 6 Tagen auf 232 und fällt am 28.05. schlagartig. Waren die Fenster hier zu, oder war etwas anderes (Tür, Gebläse)?
+4. **Anlage:** Wann genau wurde die Überdruck-Anlage eingebaut und eingeschaltet (laut Daten 23./24.08.)? Wurde sie später geändert oder abgeschaltet (Radon steigt ab 23.09. wieder)?
+5. **Sägezahn im Keller (Juni bis August):** Was passierte am 17.07., am 14.08. (ca. 07–09 Uhr, Absturz von 182 auf 24) und am 23.08.? Tür zum Keller offen, Lüften, Handwerker?
+6. **20.07. 08 Uhr bis 21.07. 00 Uhr:** Alle Wohnräume steigen tagsüber auf 130–250, Keller nicht. Fenster zu, Gewitter, besonderer Tag?
+7. **Kurze Spitzen:** 11.07. ca. 23 Uhr, 11.08. ca. 20 Uhr, 23.08. nachts, 28.03. nachts. Was war da (Gäste, Duschen/Wasser, Tür zum Keller, Grillen)? Bei 11.07. und 11.08. stieg kurz vorher das CO₂ im Schlafzimmer (1767 bzw. ~1050 ppm).
+8. **Sockel-Sensor Küche:** Wo genau hängt er (Boden, Wand, Sockelleiste)? Er zeigt im Sommer als einziger Wohnbereich-Sensor dauerhaft 50–120.
+9. **Start der Messung (24.–30.03.):** Wo war der Küchen-Sensor vor dem Start (Küche startet bei 542–707)? Wurden Sensoren verschoben oder neu in Betrieb genommen (Küche-Sockel 30.03., Büro/Wohnzimmer 27.03., Keller 01.04.)?
+10. **Gleichzeitige Resets aller Sensoren** (16.04., 30.04., 06.07., 30.08., 10.09., 16.09.): Stromausfall oder Server-Neustart?
+11. **Schlafzimmer-Sensor:** Ist das ein anderes Gerät (Dezimalwerte, keine Betriebszeit)?
+12. **Datenlücken:** Technikraum/Werkstatt 11.06.–13.06., sonst kurze Lücken. Wartung?

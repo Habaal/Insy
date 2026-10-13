@@ -1,0 +1,50 @@
+---
+title: "Radon: Was ist das und warum gefährlich?"
+---
+
+## Was ist Radon
+
+Natürliches radioaktives Edelgas ohne Geruch, Farbe und Geschmack. Es entsteht beim Zerfall von Uran im Gestein
+und Boden und ist ein Teil der natürlichen Strahlenbelastung. [^who] Das häufigste Isotop Rn-222 hat eine Halbwertszeit
+von etwa 3,8 Tagen (Allgemeinwissen, nicht aus den unten genannten Quellen; ungeprüft).
+
+## Wie kommt es ins Haus
+
+- Bodenluft dringt über Risse im Fundament, Boden-Wand-Fugen, Rohr- und Kabeldurchführungen, Hohlblockwände und
+  Abflüsse ein. [^who]
+- Am höchsten sind die Werte in Keller und erdberührten Räumen, sie können aber auch in oberen Stockwerken auftreten.
+  Entscheidend sind Geologie, Bauweise und Lüftungsverhalten. [^who] [^ooe]
+- Radon kann auch im Wasser gelöst sein. [^who]
+- Das Mühlviertel gilt in Oberösterreich wegen der Geologie (Granit) als am ehesten betroffen. [^ooe]
+- Typisches Muster (aus unseren Daten sichtbar, siehe [Befunde](befunde.qmd)): nachts und bei geschlossenen
+  Fenstern steigt die Konzentration, beim Lüften fällt sie schnell ab.
+
+## Warum gefährlich
+
+- Die Zerfallsprodukte lagern sich in den Atemwegen ab und schädigen das Lungengewebe. [^ooe]
+- WHO: 3–14 % der Lungenkrebsfälle eines Landes gehen auf Radon zurück; das Risiko steigt um etwa 16 % je 100 Bq/m³
+  (langfristiger Mittelwert). Raucher sind etwa 25-mal so stark gefährdet. [^who]
+- Österreich: rund 10 % der Lungenkrebsfälle (ca. 400 pro Jahr). [^ooe]
+
+## Grenz- und Referenzwerte
+
+| Stelle | Wert (Jahresmittel) |
+|---|---|
+| WHO | 100 Bq/m³, wenn nicht erreichbar höchstens 300 [^who] |
+| Österreich (Strahlenschutzgesetz 2020, Radonschutzverordnung) | 300 Bq/m³ [^ooe] [^ags] |
+
+Ein Referenzwert ist ein **Jahresmittel**, kein Grenzwert für einzelne Stunden: Einzelspitzen wie die 300–700 Bq/m³ in unseren Daten
+sagen für sich nichts über die Jahresbelastung. WHO empfiehlt Messungen über mindestens 3 Monate, die AGES misst 6 Monate.
+
+## Gegenmaßnahmen
+
+- Gebäude abdichten (konvektionsdichte erdberührte Bauteile), Radondrainage/Unterbodenabsaugung
+  (laut Land OÖ die häufigste, wirksamste Sanierung, ÖNORM S 5280-3). [^ooe] [^ags]
+- Bessere Gebäudelüftung; Lüftungsventilatoren senken die Werte weiter. [^who]
+- **Überdruck im Haus** (Hr. Grimmers Anlage): Das Prinzip ist, dass das Haus gegenüber dem Boden leicht überdrückt wird,
+  sodass keine Bodenluft mehr einströmt. Diese Erklärung ist Allgemeinwissen, in den abgerufenen Quellen nicht ausdrücklich
+  genannt (ungeprüft).
+
+[^who]: WHO, Radon and health: <https://www.who.int/news-room/fact-sheets/detail/radon-and-health>
+[^ooe]: Land Oberösterreich, Was ist Radon?: <https://www.land-oberoesterreich.gv.at/radon.htm>
+[^ags]: Übersicht zu Strahlenschutzgesetz 2020 / Radonschutzverordnung (BGBl. II Nr. 470/2020) laut Suchergebnis; Seiten der WKO: <https://www.wko.at/betriebsanlagen/radonschutzverordnung>

@@ -1,0 +1,20 @@
+project:
+  type: website
+  output-dir: _site
+website:
+  title: "Radon-Analyse"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Überblick
+      - href: radon-hintergrund.qmd
+        text: Radon-Hintergrund
+      - href: befunde.qmd
+        text: Befunde
+      - href: fragen.qmd
+        text: Fragen an Hr. Grimmer
+format:
+  html:
+    theme: cosmo
+    toc: true
+lang: de

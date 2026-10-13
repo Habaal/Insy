@@ -1,0 +1,21 @@
+---
+title: "Radon-Messdaten analysieren"
+---
+
+**Aufgabe (INSY, Hr. Grimmer):** Ein MySQL-Dump mit Radon-, CO₂-, Klima- und Wetterdaten aus Hr. Grimmers Haus
+auswerten, auffällige Zeiträume finden und Ereignisse sichtbar machen.
+
+**Daten:** `radon_sample_data.csv`, 229 403 Zeilen, 24.03.–13.10.2026, 7 Radon-Sensoren
+(Büro, Küche, Küche-Sockel, Schlafzimmer, Technikraum, Werkstatt, Wohnzimmer), CO₂/Temperatur/Luftdruck/Feuchte
+in Küche und Schlafzimmer, Wetter (stündlich, inkl. Bodentemperatur).
+Die CSV liegt bewusst nicht im Git (19 MB, fremde Daten): in `radon/data/` ablegen.
+
+**Vorgehen:** Python (pandas, matplotlib) in `analyse/`; Skripte nummeriert 00–12, jedes erzeugt eine Tabelle oder ein Bild.
+Dokumentiert wird mit Quarto.
+
+## Stand
+
+1. Hintergrund zu Radon recherchiert → [Radon-Hintergrund](radon-hintergrund.qmd)
+2. Daten geprüft, Ausreißer und Ereignisse gesucht → [Befunde](befunde.qmd)
+3. Offene Punkte für Hr. Grimmer → [Fragen](fragen.qmd)
+4. Noch offen: Aufbereitung/Visualisierung der Ereignisse (Dashboard).
