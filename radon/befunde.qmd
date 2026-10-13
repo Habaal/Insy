@@ -3,8 +3,8 @@ title: "Befunde: Ausreißer und auffällige Zeiträume"
 ---
 
 Alle Zahlen stammen aus den Skripten in `analyse/`. Radon in Bq/m³, Stunden- bzw. Tagesmedian, Zeiten in Ortszeit.
-**Wichtig:** Die Deutungen (Urlaub, Fenster, Anlage) sind Hypothesen aus den Daten; Hr. Grimmer muss sie bestätigen
-(siehe [Fragen](fragen.qmd)).
+**Stand:** Hr. Grimmer hat Urlaub und Einbau-Datum bestätigt. Die Fenster-Hypothese wurde korrigiert (sporadisch statt fest zwei Fenster), siehe [Fragen und Antworten](fragen.qmd).
+Eine einfache Version dieser Seite steht in [Einfach erklärt](einfach.qmd).
 
 ![Alle Sensoren, CO₂, Luftdruck und Temperatur im Überblick](bilder/uebersicht.png)
 
@@ -14,11 +14,11 @@ Alle Zahlen stammen aus den Skripten in `analyse/`. Radon in Bq/m³, Stunden- bz
 
 | Phase | Zeitraum | Merkmal |
 |---|---|---|
-| A | 01.04.–17.06. | Technikraum/Werkstatt sehr niedrig (Median 9), niedriger als Wohnbereich (26–39) |
+| A | 01.04.–17.06. | überwiegend gelüftet: Technikraum/Werkstatt sehr niedrig (Median 9), niedriger als Wohnbereich (26–39) |
 | B | 18./22.06.–23.08. | Keller deutlich höher als Wohnbereich (Median 62 gegen 22–28), Sägezahn-Verlauf |
-| Urlaub | 31.07. abends–06.08. | alle Räume 300–390, CO₂ flach |
-| D | 24.08.–22.09. | alle Räume ähnlich niedrig (18–30), Keller nicht mehr erhöht |
-| E | ab 23.09. | alle Räume steigen wieder (Wohnbereich 34–45, Keller 50–65) |
+| Urlaub | 31.07. abends–06.08. | alle Räume 300–390, CO₂ flach (bestätigt) |
+| D | 24.08.–22.09. | nach Einbau der Anlage: alle Räume ähnlich niedrig (18–30), Keller nicht mehr erhöht |
+| E | ab 23.09. | alle Räume steigen leicht (Wohnbereich 34–45, Keller 50–65), laut Hr. Grimmer im Rahmen der Messgenauigkeit ±30 |
 
 ## 1. Urlaub (31.07. abends bis 06.08. gegen 19–20 Uhr)
 
@@ -32,18 +32,17 @@ Alle Zahlen stammen aus den Skripten in `analyse/`. Radon in Bq/m³, Stunden- bz
 - Der Keller war schon vorher hoch (~190), der Urlaub erhöht ihn nur auf ~300.
 - Einziger solcher Zeitraum im CO₂-Zeitraum (ab 08.05.). Mögliche frühere Abwesenheiten (März bis Anfang Mai) lassen sich ohne CO₂ nicht sicher erkennen.
 
-## 2. Zeit mit zwei offenen Fenstern (Hypothese: Technikraum und Werkstatt, 01.04.–17.06.)
+## 2. Überwiegend gelüftete Zeit (01.04.–17.06.)
 
 - Technikraum und Werkstatt laufen in dieser Zeit stark verdünnt: Tagesmedian um 9, Tiefstwerte 0–2, Verhältnis Keller/Wohnbereich meist 0,1–0,5.
-  Danach ist der Keller höher als das Wohngeschoss. Das Muster passt zu zwei offenen Kellerfenstern (zwei Räume = zwei Fenster).
+  Danach ist der Keller höher als das Wohngeschoss. Das Muster passt zu viel Lüften im Keller. **Korrektur:** Hr. Grimmer sagt, die Fenster waren sporadisch und durcheinander offen, tendenziell mehr gelüftet als nicht. Die Annahme "immer zwei Fenster offen" gilt nicht.
 - Die Nullwerte stützen das: 560 von 577 Nullen im Technikraum und 698 von 723 in der Werkstatt liegen in diesem Zeitraum,
   nur etwa 10 je Sensor stammen vom Sensorstart (Betriebszeit ≤ 10 min). Es sind also echte, sehr niedrige Messwerte.
-- Statistisch beste Trennung in der Folgezeit: Technikraum 18.06. (7 → 42 Bq/m³), Werkstatt 22.06. (8 → 47). Das Fenster-Ende liegt also um den **18.–22.06.**
-- Der **Beginn** ist offen: die Keller-Sensoren starten erst am 01.04., die Zeit davor ist nicht beurteilbar.
-- Unterbrechung 22.–27.05.: Keller steigt in sechs Tagen auf 232, fällt am 28.05. schlagartig. Die Fenster waren hier offenbar
-  kurz geschlossen (CO₂ zeigt, dass jemand zuhause war). Kleinere Anstiege 17.–19.04. und 01.–05.05.
+- Statistisch beste Trennung in der Folgezeit: Technikraum 18.06. (7 → 42 Bq/m³), Werkstatt 22.06. (8 → 47). Der Übergang von "viel gelüftet" zu "weniger gelüftet" liegt also um den **18.–22.06.**, aber ohne festes Datum.
+- Der **Beginn** ist offen: die Keller-Sensoren starten erst am 01.04., die Zeit davor ist nicht beurteilbar. Hr. Grimmer misst dem Keller wenig Gewicht zu.
+- Unterbrechung 22.–27.05.: Keller steigt in sechs Tagen auf 232, fällt am 28.05. schlagartig. Laut Hr. Grimmer wurde länger nicht gelüftet und dann schlagartig gelüftet. Kleinere Anstiege 17.–19.04. und 01.–05.05.
 
-## 3. Wendepunkt (Überdruck-Anlage): Kandidat 23./24.08.
+## 3. Wendepunkt (Überdruck-Anlage): 24.08. (bestätigt)
 
 ![Keller-Sägezahn und Wendepunkt](bilder/keller_saegezahn.png)
 
@@ -54,8 +53,8 @@ Alle Zahlen stammen aus den Skripten in `analyse/`. Radon in Bq/m³, Stunden- bz
 - Rechnerisch (beste Einzel-Trennung der Tageswerte, Urlaub ausgeklammert): Technikraum und Werkstatt **23.08.** (76 → 31 und 83 → 36), Küche-Sockel **17.08.** (71 → 24).
 - Die Differenz Innen-/Außendruck zeigt **keine Stufe** (0,7–1,4 hPa, vor allem Sensor-Offset und Wetter). Ein Überdruck von wenigen Pa
   ist mit diesen Sensoren nicht auflösbar, der Wendepunkt kommt also nur aus dem Radon-Verhalten.
-- Ab etwa **23.09.** steigen alle Räume wieder (Büro 18 → 35, Wohnzimmer 21 → 39, Keller 50–65). Mögliche Erklärungen: Heizperiode/Kamineffekt,
-  kühlere Nächte, Anlage anders eingestellt. Offen.
+- Ab etwa **23.09.** steigen alle Räume leicht (Büro 18 → 35, Wohnzimmer 21 → 39, Keller 50–65). Laut Hr. Grimmer liegt das innerhalb der Messgenauigkeit von ±30 Bq/m³ und ist nicht belastbar.
+- Ob die Anlage geholfen hat, wird auf der Seite [Wirkung der Anlage](wirkung.qmd) ausgewertet.
 
 ## 4. Weitere Ausreißer und Ereignisse
 
@@ -63,7 +62,7 @@ Automatisch erkannt (Stundenwert über 3× gleitender 7-Tage-Median + 30 und üb
 
 | Zeitpunkt | Auffälligkeit |
 |---|---|
-| 20.07. 08 Uhr – 21.07. 00 Uhr | Alle Wohnräume steigen tagsüber auf 130–250 (Küche-Sockel 436), Keller nicht. CO₂ normal, also jemand zuhause. |
+| 20.07. 08 Uhr – 21.07. 00 Uhr | Alle Wohnräume steigen tagsüber auf 130–250 (Küche-Sockel 436), Keller nicht. CO₂ normal, also jemand zuhause. Laut Hr. Grimmer wahrscheinlich Fenster zu. |
 | 11.07. 23 Uhr | Küche-Sockel 380, Büro/Küche/Wohnzimmer verdoppeln sich innerhalb 1 Stunde. Davor Schlafzimmer-CO₂ 1767 ppm (21:20). |
 | 11.08. 20 Uhr | Küche-Sockel 351 in einer Stunde, dazu Schlafzimmer-CO₂ ~1050. |
 | 23.08. 00–09 Uhr | Küche, Sockel, Schlafzimmer, Wohnzimmer 100–158, Büro nicht. |

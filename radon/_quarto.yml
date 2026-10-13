@@ -9,6 +9,10 @@ website:
     left:
       - href: index.qmd
         text: Überblick
+      - href: einfach.qmd
+        text: Einfach erklärt
+      - href: wirkung.qmd
+        text: Wirkung der Anlage
       - href: radon-hintergrund.qmd
         text: Radon-Hintergrund
       - href: dashboard.html
@@ -16,7 +20,7 @@ website:
       - href: befunde.qmd
         text: Befunde
       - href: fragen.qmd
-        text: Fragen an Hr. Grimmer
+        text: Fragen und Antworten
 format:
   html:
     theme: cosmo

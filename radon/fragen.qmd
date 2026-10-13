@@ -1,18 +1,30 @@
 ---
-title: "Fragen an Hr. Grimmer"
+title: "Fragen an Hr. Grimmer: Antworten und was daraus folgt"
 ---
 
-Reihenfolge nach Wichtigkeit. Zeiten in Ortszeit.
+Antworten von Hr. Grimmer (über den Schüler weitergegeben), mit dem, was sich daraus für die Analyse ändert.
 
-1. **Urlaub:** Stimmt 31.07. abends bis 06.08. gegen 19–20 Uhr? Gab es weitere Urlaube oder längere Abwesenheiten (besonders März bis Anfang Mai, wo es kein CO₂ gibt)?
-2. **Offene Fenster:** Welche zwei Fenster standen offen? Waren es die Keller-Fenster bei Technikraum und Werkstatt, und von wann bis wann (laut Daten Ende ca. 18.–22.06., Beginn vor dem 01.04.)?
-3. **22.–27.05.:** Keller-Radon steigt in 6 Tagen auf 232 und fällt am 28.05. schlagartig. Waren die Fenster hier zu, oder war etwas anderes (Tür, Gebläse)?
-4. **Anlage:** Wann genau wurde die Überdruck-Anlage eingebaut und eingeschaltet (laut Daten 23./24.08.)? Wurde sie später geändert oder abgeschaltet (Radon steigt ab 23.09. wieder)?
-5. **Sägezahn im Keller (Juni bis August):** Was passierte am 17.07., am 14.08. (ca. 07–09 Uhr, Absturz von 182 auf 24) und am 23.08.? Tür zum Keller offen, Lüften, Handwerker?
-6. **20.07. 08 Uhr bis 21.07. 00 Uhr:** Alle Wohnräume steigen tagsüber auf 130–250, Keller nicht. Fenster zu, Gewitter, besonderer Tag?
-7. **Kurze Spitzen:** 11.07. ca. 23 Uhr, 11.08. ca. 20 Uhr, 23.08. nachts, 28.03. nachts. Was war da (Gäste, Duschen/Wasser, Tür zum Keller, Grillen)? Bei 11.07. und 11.08. stieg kurz vorher das CO₂ im Schlafzimmer (1767 bzw. ~1050 ppm).
-8. **Sockel-Sensor Küche:** Wo genau hängt er (Boden, Wand, Sockelleiste)? Er zeigt im Sommer als einziger Wohnbereich-Sensor dauerhaft 50–120.
-9. **Start der Messung (24.–30.03.):** Wo war der Küchen-Sensor vor dem Start (Küche startet bei 542–707)? Wurden Sensoren verschoben oder neu in Betrieb genommen (Küche-Sockel 30.03., Büro/Wohnzimmer 27.03., Keller 01.04.)?
-10. **Gleichzeitige Resets aller Sensoren** (16.04., 30.04., 06.07., 30.08., 10.09., 16.09.): Stromausfall oder Server-Neustart?
-11. **Schlafzimmer-Sensor:** Ist das ein anderes Gerät (Dezimalwerte, keine Betriebszeit)?
-12. **Datenlücken:** Technikraum/Werkstatt 11.06.–13.06., sonst kurze Lücken. Wartung?
+| # | Frage | Antwort | Folge für die Analyse |
+|---|---|---|---|
+| 1 | Urlaub 31.07.–06.08.? | **Stimmt.** | bestätigt |
+| 2 | Welche Fenster, von wann bis wann offen? | Fenster waren **durcheinander** offen, **tendenziell mehr gelüftet als nicht**, irgendwo im Haus. Nicht fix zwei Fenster, sondern **sporadisch**. | Die Hypothese "immer zwei Fenster offen" ist **widerlegt**. Es bleibt: überwiegend gelüftet (Keller-Werte Apr–Juni sehr niedrig, CO₂-Minima Mai–Juli oft bei 410–440 ppm). Ein fester Zeitraum lässt sich nicht angeben. |
+| 3 | 22.–27.05.: Keller steigt in 6 Tagen, fällt schlagartig | Länger nicht gelüftet, dann schlagartig gelüftet (wahrscheinlich). | bestätigt als Erklärung |
+| 4 | Einbau der Anlage (laut Daten 23./24.08.)? | **Richtiges Datum.** Danach sind Schwankungen **Messungenauigkeiten (Sensoren ±30 Bq/m³)**. | Einbau 24.08. verwendet. Der Herbst-Anstieg (22 → 35–42) liegt im Messfehler und gilt nicht als Beleg gegen die Anlage. |
+| 5 | Sägezahn im Keller | Keller war ihm egal, weniger aussagekräftig. | Keller nicht in die Bewertung der Anlage einbezogen |
+| 6 | 20.07. tagsüber alle Wohnräume hoch | **Wahrscheinlich Fenster zu.** | bestätigt als Erklärung |
+| 7 | Kurze Spitzen (11.07., 11.08., 23.08., 28.03.) | **Vielleicht Messungenauigkeit.** | Teilweise plausibel (±30). Spitzen von 300 bis 380 im Sockel-Sensor sind aber deutlich größer als ±30 und bleiben offen. |
+| 8 | Wo hängt der Sockel-Sensor? | **Zwei Sensoren in der Küche:** einer am Boden an der Sockelleiste der **Ost-Außenwand**, der andere **mitten im Raum**. | Ermöglicht den Vergleich "Wand minus Raummitte" als Zeichen für Bodenluft ([Wirkung](wirkung.qmd)). |
+| 9 | Start der Messung (Küche 542–707 am 24.03.) | Er hat das Problem erst da erkannt, der Wert war sehr hoch, dann hat er etwas dagegen unternommen. | Anfang des Datensatzes = Entdeckung des Problems, kein Messfehler |
+| 10 | Gleichzeitige Resets aller Sensoren | Weiß er nicht. | bleibt offen (siehe Befunde, Datenqualität) |
+| 11 | Schlafzimmer-Sensor anderes Gerät? | Ja, ein anderer Sensor ("RQ"). | erklärt Dezimalwerte und fehlende Betriebszeit |
+| 12 | Datenlücken im Keller 11.–13.06. | Nichts Besonderes. | unkritisch |
+
+Zusatzinfo für die Wirkungs-Bewertung: In den **ersten Tagen nach dem Einbau** hat er bei jedem Radon-Anstieg sofort gelüftet und die Fenster nach dem Abfall wieder geschlossen (aus Sorge). Siehe [Hat die Anlage geholfen?](wirkung.qmd).
+
+## Neue Fragen (aus der Wirkungs-Analyse)
+
+1. Läuft die Anlage seit dem 24.08. **durchgehend**, oder wurde sie abgeschaltet oder verstellt?
+2. Gibt es Heiz- oder Stromdaten (zum Vergleich, was Lüften und Anlage kosten)?
+3. Wird im **Winter** weitergemessen? Dort entscheidet sich, ob sich die Anlage lohnt.
+4. Wann genau waren die "Panik-Lüftungen" (Tage)? Dann ließe sich die Wirkung der Anlage sauberer von seinem Lüften trennen.
+5. Was war am 23.08. nachts (Spitze in mehreren Räumen, einen Tag vor dem Einbau)?
