@@ -5,6 +5,7 @@ project:
     - dashboard.html
     - befunde.js
     - befunde_daten.js
+    - befunde_rechnung.js
 website:
   title: "Radon-Analyse"
   navbar:

@@ -69,7 +69,60 @@ Im Urlaub war das Haus geschlossen und leer. Das ist ein sauberes Experiment: oh
 
 *Wichtig:* Das ist ein stark vereinfachtes Modell (ein einziger gut durchmischter Raum, konstante Quelle). Die Quellstärke hängt in Wirklichkeit vom Wetter ab (siehe nächster Abschnitt). Die Werte sind **grobe Schätzungen**, keine Messung.
 
-## 5. Was treibt Radon im Haus an? Das Wetter
+## 5. Nachgerechnet: Wie viel Radon kommt ins Haus, und mit welchem Druck?
+
+Die Kurve im Urlaub sieht aus wie die **Ladekurve eines Kondensators**, und genau so verhält sie sich auch. Statt ein Modell zu trainieren, kann man die Werte direkt ausrechnen.
+
+**Die Analogie:**
+
+| Kondensator | Haus |
+|---|---|
+| Spannung am Kondensator | Radon in der Raumluft (Bq/m³) |
+| Ladestrom | Radon, das pro Stunde aus dem Boden hereinkommt (Quellstärke *S*) |
+| Entladung über den Widerstand | Luftwechsel (Luft geht hinaus) plus radioaktiver Zerfall |
+| Zeitkonstante τ = R·C | τ = 1 / (Luftwechsel + Zerfall) |
+| Endspannung | Sättigung C∞ = S · τ |
+
+Die Gleichung ist dieselbe: **C(t) = C∞ − (C∞ − C₀) · e^(−t/τ)**. Nach einer Zeitkonstante sind 63 % des Weges geschafft, nach drei Zeitkonstanten 95 %.
+
+**Ergebnis der Kurvenanpassung (Urlaub, 31.07. 18 Uhr bis 06.08. 19 Uhr):**
+
+```{=html}
+<div id="m-fit"></div>
+```
+
+Für den Wohnbereich passt die Kurve sehr gut (R² = 0,97): **Sättigung etwa 358 Bq/m³, Zeitkonstante etwa 32 Stunden**. Nach etwa 4 Tagen (3 τ) war das Haus also zu 95 % "aufgeladen". Daraus folgt:
+
+- **Quellstärke** S = Sättigung / τ ≈ **11 Bq/m³ pro Stunde**. Mit dem unabhängig aus dem CO₂-Abfall bestimmten Luftwechsel ergibt sich **14 Bq/m³ pro Stunde**. Beide Wege stimmen gut überein.
+- **Luftwechsel im geschlossenen Haus:** etwa 0,024 pro Stunde aus der Radon-Kurve, 0,032 aus dem CO₂. Das heißt: Bei geschlossenen Fenstern wird pro Stunde nur etwa 2 bis 3 % der Luft getauscht.
+- Der Zerfall des Radons selbst (Halbwertszeit 3,8 Tage, Allgemeinwissen) macht nur etwa ein Viertel des Abbaus aus. Der Rest ist Luftaustausch.
+
+**Wie viel kommt ins ganze Haus?** Die Quellstärke gilt pro Kubikmeter Luft. Für das ganze Haus braucht man das Volumen, und für die Menge Bodenluft die Radonkonzentration im Boden. **Beides wurde nicht gemessen.** Probiere die Annahmen aus:
+
+```{=html}
+<div id="m-calc"></div>
+```
+
+Als Anhaltspunkt für Bodenluft: Ein deutsches Gutachten nennt einen Messbereich von 5 bis 100 kBq/m³ und als Beispiel 40 kBq/m³ ([Gutachten Hagen](https://www.hagen.de/web/media/files/fb/fb_61/bauleitplanung/25___ol_tae_111_im_langen_lohe/10_Gutachten_Radonbelastung.pdf)). Eine Studie für das deutsche Umweltministerium sieht ab etwa 100 bis 150 kBq/m³ deutlich mehr belastete Häuser ([BMU 2004](https://www.bundesumweltministerium.de/fileadmin/Daten_BMU/Download_PDF/Strahlenschutz/schriftenreihe_2004_641_validierung.pdf)). Beides nur laut Suchergebnis, nicht selbst gelesen.
+
+**Mit welchem Druck?** Ein warmes Haus wirkt wie ein Kamin: Die warme Luft steigt nach oben, unten entsteht ein leichter Unterdruck, der Bodenluft ansaugt (Kamineffekt, übliche Erklärung). Den Unterdruck kann man aus Innen- und Außentemperatur berechnen: Δp = ρ · g · h · (T_innen − T_außen) / T_innen. Dafür braucht man die Höhe *h* zwischen dem Boden und der "neutralen Zone" des Hauses, die ich nicht kenne. Stell sie ein:
+
+```{=html}
+<label class="form-label mb-0">Höhe über der neutralen Zone: <b id="m-hv"></b> m</label><input type="range" class="form-range" id="m-h" min="1.5" max="5" step="0.1" value="3">
+<div id="m-dp" style="height:340px"></div>
+<div id="m-dptxt" class="alert alert-light border mt-2"></div>
+```
+
+**Was man daraus lernt:**
+
+- Die Drücke sind **winzig**: unter 3 Pa, also weniger als ein Zehntausendstel des Luftdrucks. Die Drucksensoren im Haus weichen vom Wetter-Luftdruck im Wochenmittel um etwa 10 bis 140 Pa ab (Sensor-Versatz und andere Höhe). Das ist viel mehr als die gesuchten Pascal, deshalb musste der Druck aus den Temperaturen berechnet werden.
+- Im Urlaub war der Kamin-Unterdruck praktisch **null** (draußen so warm wie drinnen), trotzdem kam Radon nach. Radon kommt also auch ohne Kamineffekt ins Haus, zum Beispiel durch Diffusion oder Luftdruckschwankungen (übliche Erklärung, nicht geprüft).
+- Die Anlage wirkt bei gleichem Wetter wie ein Gegendruck von **grob 0,5 bis 0,8 Pa** (bei 3 m Höhe etwa 0,6 Pa). Das ist eine Modellrechnung unter starken Annahmen: linearer Zusammenhang, Höhe der neutralen Zone, Lüften nicht berücksichtigt. Sie ist keine Messung des Anlagendrucks.
+- Die blaue Linie ist außerdem **flacher** als die orange. Wäre die Anlage nur ein fester Gegendruck, wären beide Linien parallel verschoben. Flacher heißt: Je stärker der Kamin-Unterdruck, desto mehr hilft die Anlage. Für den Winter, wenn der Unterdruck größer wird, ist das ein gutes Zeichen. Die Datenbasis ist aber klein (50 Nächte nach dem Einbau), daher ist das unsicher.
+
+**Was sich nicht ausrechnen lässt:** die Durchlässigkeit des Bodens, die Größe der Undichtheiten im Fundament und der tatsächliche Druck der Anlage. Dafür bräuchte man eine Differenzdruckmessung (Pa-genau) zwischen Haus und Boden.
+
+## 6. Was treibt Radon im Haus an? Das Wetter
 
 Radon im Haus hängt davon ab, wie viel aus dem Boden hineinkommt und wie viel durch Lüften hinausgeht. Beides hängt vom Wetter ab. Ich betrachte die Nachtstunden (2 bis 6 Uhr), weil dann am wenigsten gelüftet wird.
 
@@ -96,7 +149,7 @@ Bei Nächten mit 6 bis 15 °C draußen lag der Median vor der Anlage bei 49 und 
 
 Beide Wege ergeben ähnliche Größenordnungen: Die Anlage senkt das nächtliche Radon bei gleichem Wetter um etwa **20 bis 35 %**. Das stimmt mit dem Befund überein, dass Spitzen fast ganz wegfielen, während der Normalwert (Stunden unter 60) etwa gleich blieb.
 
-## 6. Tagesrhythmus: Werktag oder Wochenende
+## 7. Tagesrhythmus: Werktag oder Wochenende
 
 ```{=html}
 <div id="t-btn"></div>
@@ -104,7 +157,7 @@ Beide Wege ergeben ähnliche Größenordnungen: Die Anlage senkt das nächtliche
 <div id="t-txt" class="alert alert-light border mt-2"></div>
 ```
 
-## 7. Raumluft: CO₂, Wärme und Feuchte
+## 8. Raumluft: CO₂, Wärme und Feuchte
 
 Neben Radon belasten auch CO₂, Hitze und Feuchte die Wohnqualität. Sie sagen außerdem, wie gut gelüftet wird.
 
@@ -115,7 +168,7 @@ Neben Radon belasten auch CO₂, Hitze und Feuchte die Wohnqualität. Sie sagen 
 <div id="l-nacht" class="alert alert-light border"></div>
 ```
 
-## 8. Räume und Phasen: wo und wann war es hoch?
+## 9. Räume und Phasen: wo und wann war es hoch?
 
 ```{=html}
 <div class="row"><div class="col-lg-6 mb-1"><span class="small text-muted">Phase</span><div id="g-ph"></div></div><div class="col-lg-6 mb-1"><span class="small text-muted">Kennzahl</span><div id="g-mt"></div></div></div>
@@ -123,7 +176,7 @@ Neben Radon belasten auch CO₂, Hitze und Feuchte die Wohnqualität. Sie sagen 
 <div id="g-txt" class="alert alert-light border mt-2"></div>
 ```
 
-## 9. Ausreißer und Ereignisse
+## 10. Ausreißer und Ereignisse
 
 Radon-Ereignis: ein Stundenwert über dem Dreifachen des gleitenden 7-Tage-Medians plus 30 und über 100 Bq/m³. **Klicke eine Zeile an**, dann springt das Diagramm zu diesem Zeitpunkt.
 
@@ -136,7 +189,7 @@ Radon-Ereignis: ein Stundenwert über dem Dreifachen des gleitenden 7-Tage-Media
 
 Zu den auffälligen Zeitpunkten hat Hr. Grimmer geantwortet (siehe [Fragen und Antworten](fragen.qmd)): 20.07. wahrscheinlich Fenster zu; kurze Spitzen vielleicht Messungenauigkeit; 23.08. nachts war nichts Besonderes; die Resets kennt er nicht.
 
-## 10. Wie genau sind die Messungen?
+## 11. Wie genau sind die Messungen?
 
 Hr. Grimmer nennt eine Genauigkeit von **±30 Bq/m³**. Ich habe geprüft, wie stark gleichartige Sensoren im selben Zustand voneinander abweichen:
 
@@ -155,7 +208,7 @@ Hr. Grimmer nennt eine Genauigkeit von **±30 Bq/m³**. Ich habe geprüft, wie s
 - Nullwerte nach Sensorstart (Betriebszeit unter 10 min) sind Einlaufartefakte. Die vielen Nullen im Keller von April bis Juni sind echte, sehr niedrige Messwerte.
 - Der Schlafzimmer-Sensor ist ein anderes Gerät ("RQ"), mit Dezimalwerten und ohne Betriebszeit.
 
-## 11. Grenzen und Quellen
+## 12. Grenzen und Quellen
 
 **Grenzen:**
 
@@ -164,6 +217,7 @@ Hr. Grimmer nennt eine Genauigkeit von **±30 Bq/m³**. Ich habe geprüft, wie s
 - Vorher/Nachher ist auch Sommer/Herbst. Der Vergleich bei gleicher Außentemperatur und die Regression mildern das, beseitigen es aber nicht. Das Lüftungsverhalten steckt nicht im Modell.
 - Das Luftwechsel-Modell nimmt einen einzigen, gut durchmischten Raum an. Der CO₂-Abfall der beiden CO₂-Sensoren ergibt zwei unterschiedliche Werte (Küche 0,045 pro Stunde, Schlafzimmer 0,018), ich nutze den Mittelwert.
 - Dosis- und Risikozahlen sind Orientierungswerte, keine medizinische Aussage.
+- Die Kondensator-Rechnung gilt für den Urlaub (Haus zu, niemand da). Volumen, Bodenluft-Radon und die Höhe der neutralen Zone sind Annahmen. Die Bootstrap-Bereiche sind eher zu eng, weil aufeinanderfolgende Nächte ähnlich sind.
 - Die Werte für Kamineffekt, Barometer-Pumpen und warum nachts mehr Radon da ist, sind **übliche Erklärungen** (Allgemeinwissen), nicht aus den Quellen geprüft.
 - Kein zweites Modell hat die Zahlen geprüft. Ich habe sie nur gegen meine Skriptausgaben abgeglichen.
 
@@ -180,4 +234,5 @@ Hr. Grimmer nennt eine Genauigkeit von **±30 Bq/m³**. Ich habe geprüft, wie s
 ```{=html}
 <script src="befunde_daten.js"></script>
 <script src="befunde.js"></script>
+<script src="befunde_rechnung.js"></script>
 ```
