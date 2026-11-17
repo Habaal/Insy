@@ -3,6 +3,8 @@ project:
   output-dir: _site
   resources:
     - dashboard.html
+    - befunde.js
+    - befunde_daten.js
 website:
   title: "Radon-Analyse"
   navbar:
@@ -18,7 +20,7 @@ website:
       - href: dashboard.html
         text: Dashboard
       - href: befunde.qmd
-        text: Befunde
+        text: Befunde (interaktiv)
       - href: fragen.qmd
         text: Fragen und Antworten
 format:

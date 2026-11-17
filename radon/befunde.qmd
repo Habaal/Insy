@@ -1,85 +1,183 @@
 ---
-title: "Befunde: Ausreißer und auffällige Zeiträume"
+title: "Befunde: Was steckt in den Radon-Daten?"
+format:
+  html:
+    include-in-header:
+      - text: |
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
 ---
 
-Alle Zahlen stammen aus den Skripten in `analyse/`. Radon in Bq/m³, Stunden- bzw. Tagesmedian, Zeiten in Ortszeit.
-**Stand:** Hr. Grimmer hat Urlaub und Einbau-Datum bestätigt. Die Fenster-Hypothese wurde korrigiert (sporadisch statt fest zwei Fenster), siehe [Fragen und Antworten](fragen.qmd).
-Eine einfache Version dieser Seite steht in [Einfach erklärt](einfach.qmd).
+Diese Seite ist **interaktiv**: Du kannst Schieberegler bewegen, Diagramme zoomen, Zeiträume wählen und Tabellenzeilen anklicken. Unter jedem Diagramm steht, was man sieht. Alle Zahlen kommen aus den Skripten in `analyse/` (siehe Abschnitt "Grenzen und Quellen"). Die Seite braucht Internet, weil Plotly von cdnjs geladen wird.
 
-![Alle Sensoren, CO₂, Luftdruck und Temperatur im Überblick](bilder/uebersicht.png)
+**Wer neu ist, liest zuerst [Einfach erklärt](einfach.qmd).** Die Frage, ob die Anlage geholfen hat, steht ausführlich auf der Seite [Wirkung der Anlage](wirkung.qmd).
 
-## Phasen im Überblick
+## 1. Die wichtigsten Zahlen
 
-![Keller-Sensoren gegen Wohnbereich, mit Phasen](bilder/phasen.png)
+```{=html}
+<div id="b-kpi"></div>
+```
 
-| Phase | Zeitraum | Merkmal |
-|---|---|---|
-| A | 01.04.–17.06. | überwiegend gelüftet: Technikraum/Werkstatt sehr niedrig (Median 9), niedriger als Wohnbereich (26–39) |
-| B | 18./22.06.–23.08. | Keller deutlich höher als Wohnbereich (Median 62 gegen 22–28), Sägezahn-Verlauf |
-| Urlaub | 31.07. abends–06.08. | alle Räume 300–390, CO₂ flach (bestätigt) |
-| D | 24.08.–22.09. | nach Einbau der Anlage: alle Räume ähnlich niedrig (18–30), Keller nicht mehr erhöht |
-| E | ab 23.09. | alle Räume steigen leicht (Wohnbereich 34–45, Keller 50–65), laut Hr. Grimmer im Rahmen der Messgenauigkeit ±30 |
+*Ø Wohnräume* = Mittelwert aus Büro, Küche, Wohnzimmer und Schlafzimmer über alle Stunden vom 01.04. bis 13.10., ohne den Urlaub.
 
-## 1. Urlaub (31.07. abends bis 06.08. gegen 19–20 Uhr)
+## 2. Zeitstrahl: Was ist wann passiert?
 
-![Urlaubszeitraum: Radon und CO₂](bilder/urlaub.png)
+```{=html}
+<div id="b-zeit-ctl"></div>
+<div id="b-zeit" style="height:380px"></div>
+<div id="b-zeit-txt" class="alert alert-light border mt-2"></div>
+```
 
-- CO₂ in Küche und Schlafzimmer fällt auf etwa 405–415 ppm und bleibt flach (Tagesschwankung 10–15 ppm; sonst 400–1000+).
-- Radon steigt in **allen** Räumen gleichzeitig auf 300–390 (Max: Schlafzimmer 502,6 am 03.08., Küche-Sockel 624 am 06.08.).
-  Ohne Lüften und Bewohner baut sich Radon im ganzen Haus auf.
-- Rückkehr am 06.08. gegen 19–20 Uhr: CO₂ springt hoch, Radon fällt innerhalb von etwa 2 Stunden von ~300 auf unter 25
-  (Wohnbereich). Der Keller braucht länger (Technikraum 146 um 22 Uhr, 36 am 07.08. um 04 Uhr).
-- Der Keller war schon vorher hoch (~190), der Urlaub erhöht ihn nur auf ~300.
-- Einziger solcher Zeitraum im CO₂-Zeitraum (ab 08.05.). Mögliche frühere Abwesenheiten (März bis Anfang Mai) lassen sich ohne CO₂ nicht sicher erkennen.
+Hintergrund: grün = unter 100 Bq/m³, gelb = 100 bis 300, rot = über 300. Das sind die Referenzwerte von WHO (100) und Österreich (300). Sie gelten für das **Jahresmittel**, einzelne Stunden im roten Bereich sind kein Gesundheitsproblem.
 
-## 2. Überwiegend gelüftete Zeit (01.04.–17.06.)
+Von Hr. Grimmer bestätigt: Urlaub 31.07. bis 06.08., Einbau der Anlage am 24.08., am 20.07. waren wahrscheinlich die Fenster zu. Die Fenster waren sonst **sporadisch und durcheinander** offen, tendenziell mehr gelüftet als nicht. Eine feste Zeit mit "immer zwei offenen Fenstern" gibt es nicht.
 
-- Technikraum und Werkstatt laufen in dieser Zeit stark verdünnt: Tagesmedian um 9, Tiefstwerte 0–2, Verhältnis Keller/Wohnbereich meist 0,1–0,5.
-  Danach ist der Keller höher als das Wohngeschoss. Das Muster passt zu viel Lüften im Keller. **Korrektur:** Hr. Grimmer sagt, die Fenster waren sporadisch und durcheinander offen, tendenziell mehr gelüftet als nicht. Die Annahme "immer zwei Fenster offen" gilt nicht.
-- Die Nullwerte stützen das: 560 von 577 Nullen im Technikraum und 698 von 723 in der Werkstatt liegen in diesem Zeitraum,
-  nur etwa 10 je Sensor stammen vom Sensorstart (Betriebszeit ≤ 10 min). Es sind also echte, sehr niedrige Messwerte.
-- Statistisch beste Trennung in der Folgezeit: Technikraum 18.06. (7 → 42 Bq/m³), Werkstatt 22.06. (8 → 47). Der Übergang von "viel gelüftet" zu "weniger gelüftet" liegt also um den **18.–22.06.**, aber ohne festes Datum.
-- Der **Beginn** ist offen: die Keller-Sensoren starten erst am 01.04., die Zeit davor ist nicht beurteilbar. Hr. Grimmer misst dem Keller wenig Gewicht zu.
-- Unterbrechung 22.–27.05.: Keller steigt in sechs Tagen auf 232, fällt am 28.05. schlagartig. Laut Hr. Grimmer wurde länger nicht gelüftet und dann schlagartig gelüftet. Kleinere Anstiege 17.–19.04. und 01.–05.05.
+## 3. Wie gefährlich ist Radon, ab wann und warum?
 
-## 3. Wendepunkt (Überdruck-Anlage): 24.08. (bestätigt)
+**Warum gefährlich?** Radon selbst ist ein Edelgas. Seine Zerfallsprodukte setzen sich in den Atemwegen ab und schädigen das Lungengewebe ([Land Oberösterreich](https://www.land-oberoesterreich.gv.at/radon.htm)). Sie strahlen dabei Alphastrahlung aus (Presseartikel, die sich auf den Lungeninformationsdienst berufen, z. B. [Pharmazeutische Zeitung](https://www.pharmazeutische-zeitung.de/wenig-lueften-erhoeht-das-risiko-162298/)). Nach der WHO ist Radon eine wichtige Ursache für Lungenkrebs und verursacht je nach Land **3 bis 14 %** aller Lungenkrebsfälle. In Österreich sind es etwa **10 %** (rund 400 Fälle pro Jahr, [Land OÖ](https://www.land-oberoesterreich.gv.at/radon.htm)). Raucher sind laut WHO etwa **25-mal** so stark gefährdet wie Nichtraucher ([WHO](https://www.who.int/news-room/fact-sheets/detail/radon-and-health)).
 
-![Keller-Sägezahn und Wendepunkt](bilder/keller_saegezahn.png)
+**Ab wann gefährlich?** Nach der WHO gibt es **keinen bekannten Schwellenwert**, unter dem Radon risikofrei wäre. Das Risiko steigt um etwa **16 % je 100 Bq/m³** des langfristigen Mittelwerts ([WHO](https://www.who.int/news-room/fact-sheets/detail/radon-and-health)). Die Referenzwerte sind deshalb keine Grenze zwischen "sicher" und "gefährlich", sondern Entscheidungsgrenzen:
 
-- Vor dem Wendepunkt zeigt der Keller einen **Sägezahn**: mehrere Tage Anstieg auf 150–230, dann ein plötzlicher Absturz
-  (17.07., 14.08. gegen 07–09 Uhr von 182 auf 24, 23.08.). Der Wohnbereich bleibt dabei unverändert, der Auslöser sitzt also im Keller (Tür, Fenster, Lüften).
-- Nach dem **23./24.08.** bleibt der Keller einen Monat lang auf Wohnbereich-Niveau (Technikraum 24, Werkstatt 26) und baut sich nicht mehr auf.
-  Der Sägezahn verschwindet. Die Küche-Sockel-Werte sinken schon ab etwa 17.08. (71 → 24).
-- Rechnerisch (beste Einzel-Trennung der Tageswerte, Urlaub ausgeklammert): Technikraum und Werkstatt **23.08.** (76 → 31 und 83 → 36), Küche-Sockel **17.08.** (71 → 24).
-- Die Differenz Innen-/Außendruck zeigt **keine Stufe** (0,7–1,4 hPa, vor allem Sensor-Offset und Wetter). Ein Überdruck von wenigen Pa
-  ist mit diesen Sensoren nicht auflösbar, der Wendepunkt kommt also nur aus dem Radon-Verhalten.
-- Ab etwa **23.09.** steigen alle Räume leicht (Büro 18 → 35, Wohnzimmer 21 → 39, Keller 50–65). Laut Hr. Grimmer liegt das innerhalb der Messgenauigkeit von ±30 Bq/m³ und ist nicht belastbar.
-- Ob die Anlage geholfen hat, wird auf der Seite [Wirkung der Anlage](wirkung.qmd) ausgewertet.
+- **100 Bq/m³** (WHO): Ziel für das Jahresmittel in Wohnungen. Wenn das nicht erreichbar ist, soll es 300 nicht überschreiten.
+- **300 Bq/m³** (Österreich, Strahlenschutzgesetz 2020, Radonschutzverordnung): Referenzwert für das Jahresmittel. Darüber wird eine bauliche Sanierung empfohlen, meist eine Unterbodenabsaugung ([Land OÖ](https://www.land-oberoesterreich.gv.at/radon.htm)).
 
-## 4. Weitere Ausreißer und Ereignisse
+Wichtig: Gefährlich ist die **lange Einwirkung**, über Jahre. Eine kurze Spitze (zum Beispiel unser Urlaub, in dem niemand im Haus war) ändert das Jahresmittel kaum. Die Zahl +16 % ist ein **relatives** Risiko: Sie sagt, um wie viel das Risiko eines Menschen steigt, nicht wie hoch es absolut ist. Absolute Risiken (zum Beispiel nach WHO-Handbuch) habe ich nicht recherchiert.
 
-Automatisch erkannt (Stundenwert über 3× gleitender 7-Tage-Median + 30 und über 100): 29 Ereignisse, Liste in `analyse/ereignisse_radon.csv`. Wichtigste:
+**Strahlendosis (Umweltbelastung):** Die effektive Dosis ergibt sich aus Radon × Aufenthaltszeit × Dosiskoeffizient. ICRP 137 nennt 3 mSv je mJ·h/m³, das entspricht bei einem Gleichgewichtsfaktor von 0,4 etwa **6,9 nSv je Bq·h/m³** ([ICRPaedia](https://icrpaedia.org/Calculating_Radon_Doses)). Beispiel der ICRP: 50 Bq/m³ bei 2000 Stunden ergeben 0,7 mSv. Je nach Methode weichen die Koeffizienten um einen Faktor von etwa 2 ab (die UNSCEAR-Umrechnung ergibt rund 3,7 nSv, **eigene Umrechnung** aus einer Suchergebnis-Angabe, ungeprüft). Die Aufenthaltszeit zuhause ist eine Annahme (Standard hier 7000 Stunden pro Jahr).
 
-| Zeitpunkt | Auffälligkeit |
-|---|---|
-| 20.07. 08 Uhr – 21.07. 00 Uhr | Alle Wohnräume steigen tagsüber auf 130–250 (Küche-Sockel 436), Keller nicht. CO₂ normal, also jemand zuhause. Laut Hr. Grimmer wahrscheinlich Fenster zu. |
-| 11.07. 23 Uhr | Küche-Sockel 380, Büro/Küche/Wohnzimmer verdoppeln sich innerhalb 1 Stunde. Davor Schlafzimmer-CO₂ 1767 ppm (21:20). |
-| 11.08. 20 Uhr | Küche-Sockel 351 in einer Stunde, dazu Schlafzimmer-CO₂ ~1050. |
-| 23.08. 00–09 Uhr | Küche, Sockel, Schlafzimmer, Wohnzimmer 100–158, Büro nicht. |
-| 28.03. 02–08 Uhr | Wohnzimmer 416 (Rohwert), Küche stündlich 470. Anlaufphase der Messung. |
-| 24./25.03. | Küche startet bei 542–707 und fällt bis 27.03. auf ~136 (Sensor hatte beim ersten Wert erst 144 min Betriebszeit). |
-| 30.03. 15–21 Uhr | Küche-Sockel 440 kurz nach Sensorstart (13:50), vermutlich Einlaufphase. |
-| 11.10. | CO₂ Küche 1778 ppm um 17:11 (Höchstwert insgesamt), Küche-Sockel 214 um 01 Uhr. |
-| 28.06. | Außentemperatur Maximum 37,4 °C (Minimum −2,5 °C am 28.03.). |
+**Probiere es aus:** Wähle einen Radonwert und die Aufenthaltszeit. Die Schaltflächen setzen unsere Messwerte ein.
 
-Viele kleinere Ereignisse (April–Juni) sind Nachtspitzen zwischen 01 und 08 Uhr in mehreren Räumen: normaler Tagesgang, nachts kein Lüften.
+```{=html}
+<div id="b-risiko"></div>
+```
 
-## 5. Datenqualität
+**Was heißt das für das Haus?** Mit dem Durchschnitt von etwa 36 Bq/m³ (vor der Anlage) bzw. 31 (nach der Anlage) liegt das Haus weit unter den Referenzwerten. Der Unterschied zwischen vorher und nachher macht rechnerisch nur etwa 0,7 Prozentpunkte relatives Risiko aus. Wo der Winter fehlt, entscheidet der Winterfaktor-Regler, ab wann sich das ändern würde. **Das ist keine medizinische Beratung** und keine Risikobewertung für eine Person.
 
-- Messintervall etwa 10 min je Sensor; je Zeile meist nur ein Sensor, daher viele leere Felder und gleiche Zeitstempel.
-- **Gleichzeitige Betriebszeit-Resets aller Sensoren** am 16.04. 07 Uhr, 30.04. 16 Uhr, 06.07. 06 Uhr, 30.08. 11 Uhr, 10.09. 14 Uhr und 16.09. 15 Uhr
-  (Stromausfall oder Neustart des Servers/Hubs?). Einzel-Resets: Technikraum 13./14.06., Büro 12.08., Küche-Sockel 14.08., Küche 08./10./12.10.
-- Die Betriebszeit springt dabei teils rückwärts und wieder vor (z. B. 28316 → 28285 → 0), die Zeilen stammen offenbar aus verzögert geschriebenen Puffern.
-- **Datenlücken:** Technikraum/Werkstatt 11.06. 17:53 bis 13.06. (1 Tag 14 h), Werkstatt 27.08. 14 h, Büro 31.05. 8 h, Wohnzimmer 08.09. 5,7 h.
-- Nullwerte nach Sensorstart (Betriebszeit ≤ 10 min) sind Einlaufartefakte (Büro 19, Küche 23, Sockel 19, Wohnzimmer 17).
-- Der Schlafzimmer-Sensor liefert Dezimalwerte und keine Betriebszeit, ist also ein anderer Sensortyp. Wetterdaten nur stündlich, 11 Lücken über 2 h.
+## 4. Lüften: der Urlaub als Experiment
+
+Im Urlaub war das Haus geschlossen und leer. Das ist ein sauberes Experiment: ohne Lüften und ohne Menschen. So lässt sich schätzen, wie schnell die Luft im Haus getauscht wird und wie viel Radon pro Stunde aus dem Boden nachkommt.
+
+```{=html}
+<div id="b-urlaub" style="height:380px"></div>
+<div id="b-urlaub-txt" class="alert alert-light border mt-2"></div>
+```
+
+**Simulator: Was bestimmt den Radonwert?** Im Gleichgewicht gilt: Radon = Quellstärke / (Luftwechsel + Zerfall). Ändere Luftwechsel und Quellstärke:
+
+```{=html}
+<div id="b-sim"></div>
+```
+
+*Wichtig:* Das ist ein stark vereinfachtes Modell (ein einziger gut durchmischter Raum, konstante Quelle). Die Quellstärke hängt in Wirklichkeit vom Wetter ab (siehe nächster Abschnitt). Die Werte sind **grobe Schätzungen**, keine Messung.
+
+## 5. Was treibt Radon im Haus an? Das Wetter
+
+Radon im Haus hängt davon ab, wie viel aus dem Boden hineinkommt und wie viel durch Lüften hinausgeht. Beides hängt vom Wetter ab. Ich betrachte die Nachtstunden (2 bis 6 Uhr), weil dann am wenigsten gelüftet wird.
+
+```{=html}
+<div class="row g-2 mb-2"><div class="col-lg-6"><label class="form-label mb-0">Einflussgröße</label><select id="w-var" class="form-select form-select-sm"></select></div></div>
+<div id="w-sc" style="height:340px"></div>
+<div id="w-txt" class="alert alert-light border mt-2"></div>
+```
+
+**Gleiche Bedingungen, vorher gegen nachher:** Der saubere Vergleich geht über die Außentemperatur. Bei gleicher Außentemperatur ist das Radon nach der Anlage fast überall niedriger:
+
+```{=html}
+<div id="w-bins" style="height:300px"></div>
+```
+
+Bei Nächten mit 6 bis 15 °C draußen lag der Median vor der Anlage bei 49 und danach bei 37,5 Bq/m³ (etwa **−23 %**). Der Anteil der Nächte mit Wohnraum-Mittel über 60 Bq/m³ sank von 34 % auf 6 %.
+
+**Alle Einflüsse zusammen (Regression):**
+
+```{=html}
+<div id="w-reg" style="height:240px"></div>
+<div id="w-regtxt" class="alert alert-light border mt-2"></div>
+```
+
+Beide Wege ergeben ähnliche Größenordnungen: Die Anlage senkt das nächtliche Radon bei gleichem Wetter um etwa **20 bis 35 %**. Das stimmt mit dem Befund überein, dass Spitzen fast ganz wegfielen, während der Normalwert (Stunden unter 60) etwa gleich blieb.
+
+## 6. Tagesrhythmus: Werktag oder Wochenende
+
+```{=html}
+<div id="t-btn"></div>
+<div class="row"><div class="col-lg-6"><div id="t-rn" style="height:260px"></div></div><div class="col-lg-6"><div id="t-co2" style="height:260px"></div></div></div>
+<div id="t-txt" class="alert alert-light border mt-2"></div>
+```
+
+## 7. Raumluft: CO₂, Wärme und Feuchte
+
+Neben Radon belasten auch CO₂, Hitze und Feuchte die Wohnqualität. Sie sagen außerdem, wie gut gelüftet wird.
+
+```{=html}
+<div class="row g-2 mb-2"><div class="col-lg-6"><label class="form-label mb-0">Kennzahl</label><select id="l-ind" class="form-select form-select-sm"></select></div></div>
+<div id="l-chart" style="height:300px"></div>
+<div id="l-txt" class="alert alert-light border mt-2"></div>
+<div id="l-nacht" class="alert alert-light border"></div>
+```
+
+## 8. Räume und Phasen: wo und wann war es hoch?
+
+```{=html}
+<div class="row"><div class="col-lg-6 mb-1"><span class="small text-muted">Phase</span><div id="g-ph"></div></div><div class="col-lg-6 mb-1"><span class="small text-muted">Kennzahl</span><div id="g-mt"></div></div></div>
+<div id="g-chart" style="height:300px"></div>
+<div id="g-txt" class="alert alert-light border mt-2"></div>
+```
+
+## 9. Ausreißer und Ereignisse
+
+Radon-Ereignis: ein Stundenwert über dem Dreifachen des gleitenden 7-Tage-Medians plus 30 und über 100 Bq/m³. **Klicke eine Zeile an**, dann springt das Diagramm zu diesem Zeitpunkt.
+
+```{=html}
+<div id="e-chart" style="height:280px"></div>
+<div id="e-sel" class="alert alert-light border mt-2">Wähle unten ein Ereignis aus.</div>
+<div id="e-flt" class="mb-2"></div>
+<div style="max-height:420px;overflow:auto"><table id="e-tab" class="table table-sm"></table></div>
+```
+
+Zu den auffälligen Zeitpunkten hat Hr. Grimmer geantwortet (siehe [Fragen und Antworten](fragen.qmd)): 20.07. wahrscheinlich Fenster zu; kurze Spitzen vielleicht Messungenauigkeit; 23.08. nachts war nichts Besonderes; die Resets kennt er nicht.
+
+## 10. Wie genau sind die Messungen?
+
+Hr. Grimmer nennt eine Genauigkeit von **±30 Bq/m³**. Ich habe geprüft, wie stark gleichartige Sensoren im selben Zustand voneinander abweichen:
+
+```{=html}
+<div class="row"><div class="col-lg-6"><div id="n-chart" style="height:280px"></div></div><div class="col-lg-6"><div id="n-herbst" style="height:280px"></div></div></div>
+<div id="n-txt" class="alert alert-light border mt-2"></div>
+```
+
+**Anmerkung zum Herbst-Anstieg:** Hr. Grimmer sieht die Schwankungen nach dem Einbau als Messungenauigkeit. Die Daten zeigen: Einzelne Stundenwerte streuen tatsächlich um bis zu etwa ±30, aber der Wochenmedian steigt bei **allen** Sensoren gemeinsam und mit sinkender Außentemperatur. Ich lese das als echten, jahreszeitlichen Anstieg im kleinen Bereich (Wohnräume unter 45 Bq/m³). Das ändert nichts an der Bewertung. Ein gemeinsamer Messfehler von ±30 betrifft alle Sensoren gleich und fällt beim Vorher-Nachher-Vergleich mit denselben Sensoren heraus.
+
+**Datenqualität kurz:**
+
+- Messintervall etwa 10 Minuten je Sensor. Je Zeile meist nur ein Sensor, daher viele leere Felder.
+- **Gleichzeitige Betriebszeit-Resets aller Sensoren** am 16.04., 30.04., 06.07., 30.08., 10.09. und 16.09. (Ursache unbekannt, Hr. Grimmer weiß es nicht). Einzelne Resets: Technikraum 13./14.06., Büro 12.08., Küche-Sockel 14.08., Küche 08./10./12.10.
+- **Datenlücken:** Technikraum/Werkstatt 11.06. 17:53 bis 13.06. (1 Tag 14 h), Werkstatt 27.08. (14 h), Büro 31.05. (8 h), Wohnzimmer 08.09. (5,7 h).
+- Nullwerte nach Sensorstart (Betriebszeit unter 10 min) sind Einlaufartefakte. Die vielen Nullen im Keller von April bis Juni sind echte, sehr niedrige Messwerte.
+- Der Schlafzimmer-Sensor ist ein anderes Gerät ("RQ"), mit Dezimalwerten und ohne Betriebszeit.
+
+## 11. Grenzen und Quellen
+
+**Grenzen:**
+
+- Messung nur von März bis Oktober, **kein Winter**. Winter und Kosten sind laut Hr. Grimmer nicht verfügbar.
+- Die Anlage lief durchgehend, aber auf **wechselnden Stufen**. Die Wirkung ist ein Mittel über alle Stufen.
+- Vorher/Nachher ist auch Sommer/Herbst. Der Vergleich bei gleicher Außentemperatur und die Regression mildern das, beseitigen es aber nicht. Das Lüftungsverhalten steckt nicht im Modell.
+- Das Luftwechsel-Modell nimmt einen einzigen, gut durchmischten Raum an. Der CO₂-Abfall der beiden CO₂-Sensoren ergibt zwei unterschiedliche Werte (Küche 0,045 pro Stunde, Schlafzimmer 0,018), ich nutze den Mittelwert.
+- Dosis- und Risikozahlen sind Orientierungswerte, keine medizinische Aussage.
+- Die Werte für Kamineffekt, Barometer-Pumpen und warum nachts mehr Radon da ist, sind **übliche Erklärungen** (Allgemeinwissen), nicht aus den Quellen geprüft.
+- Kein zweites Modell hat die Zahlen geprüft. Ich habe sie nur gegen meine Skriptausgaben abgeglichen.
+
+**Quellen (alle mit URL):**
+
+- WHO, Radon and health: <https://www.who.int/news-room/fact-sheets/detail/radon-and-health> (Risiko +16 % je 100 Bq/m³, 3–14 %, 25-mal bei Rauchern, Referenzwert 100 bzw. 300, kein bekannter Schwellenwert)
+- Land Oberösterreich, Was ist Radon?: <https://www.land-oberoesterreich.gv.at/radon.htm> (Referenzwert 300, ca. 10 % der Lungenkrebsfälle, Mühlviertel, Sanierung)
+- ICRPaedia, Calculating Radon Doses: <https://icrpaedia.org/Calculating_Radon_Doses> (Dosiskoeffizient 3 mSv je mJ·h/m³ = 6,9 nSv je Bq·h/m³, Gleichgewichtsfaktor 0,4)
+- Pharmazeutische Zeitung (Presseartikel, nicht Primärquelle): <https://www.pharmazeutische-zeitung.de/wenig-lueften-erhoeht-das-risiko-162298/>
+- UBA, Hygienische Leitwerte (CO₂: unter 1000 ppm unbedenklich, 1000–2000 auffällig, über 2000 inakzeptabel; laut Suchergebnis, das PDF war nicht lesbar): <https://www.umweltbundesamt.de/system/files/medien/4031/bilder/dateien/hygienische_leitwerte_0.pdf>
+- UBA, Lüften und Schimmel (Luftfeuchte 40–60 %, über 60 % steigendes Risiko; laut Suchergebnis): <https://www.umweltbundesamt.de/themen/gesundheit/umwelteinfluesse-auf-den-menschen/schimmel/wie-luefte-ich-richtig-tipps-tricks-zu>
+- Ungeprüft und nicht gelesen: die UNSCEAR-Umrechnung und die Literatur zur Frage eines Schwellenwerts (WHO-Handbuch). Die Angaben stammen aus Suchergebnissen.
+
+```{=html}
+<script src="befunde_daten.js"></script>
+<script src="befunde.js"></script>
+```
