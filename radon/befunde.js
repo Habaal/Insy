@@ -23,7 +23,7 @@
       card('Ø Wohnräume vor → nach der Anlage', `${f0(B.mittel.vor)} → ${f0(B.mittel.nach)} <small>Bq/m³</small>`, 'ohne Urlaub, Referenz 100 / 300') +
       card('Urlaub, Haus 6 Tage zu', `${f0(B.mittel.urlaub)} <small>Bq/m³</small>`, 'niemand zuhause, nach Lüften in 2 h normal') +
       card('Kühle Nächte (6–15 °C): Median', `${f0(w.vor)} → ${f0(w.nach)} <small>Bq/m³</small>`, `bei gleichem Wetter ${f0(100 * (w.nach / w.vor - 1))} %, Nächte über 60: ${f0(w.gt60_vor)} % → ${f0(w.gt60_nach)} %`) +
-      card('Luftwechsel: zu → gelüftet', `${f1(lw.ach_urlaub)} → ${f1(lw.ach_lueften)} <small>pro Stunde</small>`, `Lüften wirkt etwa ${f0(lw.ach_lueften / lw.ach_urlaub)}-mal stärker`) + '</div>';
+      card('Luftwechsel: zu → gelüftet', `${f2(lw.ach_urlaub)} → ${f1(lw.ach_lueften)} <small>pro Stunde</small>`, `Lüften wirkt etwa ${f0(lw.ach_lueften / lw.ach_urlaub)}-mal stärker`) + '</div>';
   })();
 
   /* ---------- 2. Zeitstrahl */
