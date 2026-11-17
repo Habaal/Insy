@@ -1,0 +1,117 @@
+---
+title: "Wie gefährlich ist Radon wirklich? Gesundheit, Studien und unser Urteil"
+---
+
+**Fragen:** Was macht Radon im Körper? Wie gefährlich ist es wirklich? Wie viel Unterschied machen 100 Bq/m³? Welche Langzeitschäden gibt es? Und ist das Ganze nur Geldmache?
+
+**Quellenregel für diese Seite:** nur qualifizierte Quellen. Das sind Fachgremien der WHO (IARC), Behörden und begutachtete Studien, die mit öffentlichem Geld finanziert wurden. Keine Firmen- oder Herstellerseiten, keine Presseartikel. Bei jeder Studie steht, was ich über ihre Finanzierung weiß. Was ich nicht selbst gelesen habe, ist markiert.
+
+## 1. Was Radon im Körper macht
+
+- Radon ist ein Edelgas. Gefährlich sind seine **kurzlebigen Zerfallsprodukte** (Polonium-Isotope). Sie werden eingeatmet, setzen sich in den Atemwegen ab und senden dort **Alphastrahlung** aus.
+- Alphateilchen fliegen nur sehr kurz, geben ihre Energie aber auf engstem Raum ab. Laut der IARC verursachen sie **Doppelstrangbrüche in der DNA, Chromosomenschäden, Genmutationen und die Umwandlung von Zellen**. Das ist bei allen Alphastrahlern gleich ([IARC-Monographie 100D](https://cdn.who.int/media/docs/default-source/radiation/mono100d.pdf), Abschnitt 5, Evaluation).
+- Weil die Strahlung direkt im Lungengewebe entsteht, trifft sie fast nur die **Lunge**.
+
+## 2. Wie gefährlich ist es wirklich?
+
+**Die offizielle Einstufung:** Die IARC (Krebsforschungsagentur der WHO) stuft Radon-222 mit seinen Zerfallsprodukten in die **Gruppe 1, "krebserregend für Menschen"** ein. Das ist die höchste Stufe, die es gibt. Erstmals geschah das 1988, bestätigt wurde es 2012 ([IARC-Monographie 100D](https://cdn.who.int/media/docs/default-source/radiation/mono100d.pdf)). Wörtlich: Radon *"cause[s] cancer of the lung"*.
+
+**Worauf das beruht:** auf drei voneinander unabhängigen Arten von Belegen:
+
+| Art der Studie | Beispiel | Ergebnis | Finanzierung |
+|---|---|---|---|
+| Bergarbeiter mit sehr hohen Werten | Deutsche Uranbergarbeiter (Wismut), 59 000 Männer, 2 388 Lungenkrebs-Tote ([Grosche et al. 2006](https://europepmc.org/article/MED/17043686)) | Lungenkrebs-Risiko steigt klar mit der Radonmenge; am stärksten 15 bis 24 Jahre nach der Belastung | Finanzierung im Datensatz nicht angegeben, nicht geprüft |
+| Wohnhäuser, Europa | 13 Studien in 9 Ländern, 7 148 Lungenkrebs-Fälle, 14 208 Vergleichspersonen ([Darby et al. 2005, BMJ](https://europepmc.org/article/MED/15613366)) | **+16 % je 100 Bq/m³** (95 %-Bereich 5 bis 31 %), nach Korrektur des Messfehlers; ohne Korrektur +8,4 % | Finanzierung im Datensatz nicht angegeben, nicht geprüft |
+| Wohnhäuser, Nordamerika | 7 Studien, 3 662 Fälle, 4 966 Vergleichspersonen ([Krewski et al. 2005](https://europepmc.org/article/MED/15703527)) | Risiko bei 100 Bq/m³ **×1,11** (1,00 bis 1,28) | öffentlich: US-Gesundheitsinstitute (NIH: NCI, NIEHS) |
+| Wohnhäuser, China | 2 Studien, 1 050 Fälle, 1 996 Vergleichspersonen ([Lubin et al. 2004](https://europepmc.org/article/MED/14735479)) | Risiko bei 100 Bq/m³ **×1,33** (Bereich im Abstract als 1,01 bis 1,36 abgedruckt, offenbar fehlerhaft) | im Datensatz nicht angegeben |
+
+Drei Kontinente, verschiedene Forschergruppen, zwei völlig verschiedene Situationen (Bergwerk und Wohnhaus): Alle zeigen in dieselbe Richtung. Die Krewski-Studie schreibt ausdrücklich, ihr Ergebnis (1,11) passt zu dem, was man aus den Bergarbeiterdaten hochrechnet (1,12).
+
+**Kein sicherer Schwellenwert:** In der europäischen Studie ist der Zusammenhang **linear, ohne erkennbare Schwelle**. Er war auch dann noch signifikant, wenn man nur Häuser **unter 200 Bq/m³** betrachtet ([Darby et al. 2005](https://europepmc.org/article/MED/15613366)). Die WHO schreibt dazu, dass es keinen bekannten Wert gibt, unter dem Radon risikofrei wäre ([WHO](https://www.who.int/news-room/fact-sheets/detail/radon-and-health)).
+
+**Wie viele Fälle:** Die IARC fasst zusammen, dass in Europa etwa **9 % der Lungenkrebsfälle** auf Radon in Wohnungen zurückgehen (nach Darby et al.). Die WHO nennt je nach Land **3 bis 14 %** ([WHO](https://www.who.int/news-room/fact-sheets/detail/radon-and-health)). Für Österreich gibt das Land Oberösterreich etwa **10 %, rund 400 Fälle pro Jahr** an ([Land OÖ](https://www.land-oberoesterreich.gv.at/radon.htm)). Nach dem Rauchen ist Radon damit eine der wichtigsten Ursachen für Lungenkrebs.
+
+## 3. Wie viel Unterschied machen 100 Bq/m³ wirklich?
+
+Die Zahl "+16 %" klingt dramatisch, ist aber ein **relativer** Wert. Entscheidend ist, wovon man ausgeht. Die europäische Studie gibt das **absolute Risiko** an, bis zum Alter von 75 Jahren an Lungenkrebs zu sterben ([Darby et al. 2005](https://europepmc.org/article/MED/15613366)):
+
+| Radon (Dauerwert) | Nie geraucht | Raucher |
+|---|---|---|
+| 0 Bq/m³ | etwa 0,4 % | etwa 10 % |
+| 100 Bq/m³ | etwa 0,5 % | etwa 12 % |
+| 400 Bq/m³ | etwa 0,7 % | etwa 16 % |
+
+**Was heißt das?**
+
+- **Nichtraucher:** +100 Bq/m³ heißt etwa **+0,1 Prozentpunkte**. Von 1 000 Nichtrauchern, die ein Leben lang 100 Bq/m³ mehr einatmen, stirbt etwa **einer zusätzlich** an Lungenkrebs.
+- **Raucher:** +100 Bq/m³ heißt etwa **+2 Prozentpunkte**. Von 1 000 Rauchern sterben etwa **20 zusätzlich**. Das liegt daran, dass Rauchen und Radon sich gegenseitig verstärken. Die WHO schreibt, dass Raucher etwa 25-mal so stark durch Radon gefährdet sind ([WHO](https://www.who.int/news-room/fact-sheets/detail/radon-and-health)).
+- **Für unser Haus** (eigene lineare Rechnung mit den Zahlen oben, nicht aus der Studie): Bei etwa 36 Bq/m³ liegt ein lebenslanger Nichtraucher bei rund 0,44 % statt 0,40 %. Der Unterschied durch die Anlage (etwa 36 → 31 Bq/m³) entspricht für Nichtraucher etwa **1 zusätzlichem Fall auf 20 000 Menschen**, für Raucher etwa **1 auf 1 000**.
+
+Wichtig: Diese Zahlen gelten für eine **jahrzehntelange** Belastung. Ein einzelner Monat mit hohen Werten ändert sie kaum.
+
+## 4. Welche Langzeitschäden?
+
+- **Lungenkrebs** ist der einzige Schaden, der sicher belegt ist (IARC: "sufficient evidence"). Er entsteht **mit großer Verzögerung**: Bei den Wismut-Bergarbeitern war das Risiko **15 bis 24 Jahre nach der Belastung** am höchsten ([Grosche et al. 2006](https://europepmc.org/article/MED/17043686)). Die nordamerikanische Studie betrachtet deshalb die Belastung 5 bis 30 Jahre vor der Erkrankung ([Krewski et al. 2005](https://europepmc.org/article/MED/15703527)).
+- **Leukämie:** Die IARC sieht einen "positiven Zusammenhang", aber **keinen Beweis**. Studien zu Kindern und Erwachsenen in Wohnhäusern zeigen meist kein erhöhtes Risiko, eine dänische Studie zu Kindern schon ([IARC 100D](https://cdn.who.int/media/docs/default-source/radiation/mono100d.pdf)).
+- **Andere Krebsarten:** Bei den Wismut-Bergarbeitern (die viel höhere Mengen abbekamen als jedes Wohnhaus) gab es einen kleinen, signifikanten Anstieg bei Krebs der oberen Atemwege und Luftröhre. Bei Magen- und Leberkrebs gab es Hinweise, die die Autoren aber auch durch Arsen und Staub im Bergwerk erklären können ([Kreuzer et al. 2008](https://europepmc.org/article/MED/19002172), [Kreuzer et al. 2010](https://europepmc.org/article/MED/19855993)).
+- **Herz-Kreislauf:** **Kein** erhöhtes Risiko für Herzkrankheiten oder Schlaganfall bei den Bergarbeitern ([Kreuzer et al. 2010](https://europepmc.org/article/MED/19855993)).
+- Laut WHO sind andere Krebsarten **nicht nachgewiesen** ([WHO](https://www.who.int/news-room/fact-sheets/detail/radon-and-health)).
+
+## 5. Gibt es Studien, die das Gegenteil sagen?
+
+Ja. Am bekanntesten ist eine Studie von **Cohen (1995)**, die über 3 000 US-Bezirke verglich. Dort hatten Bezirke mit **mehr** Radon **weniger** Lungenkrebs. Manche schließen daraus, dass wenig Radon sogar gesund wäre ("Hormesis").
+
+Warum das nicht überzeugt:
+
+- Diese Studie vergleicht nur **Bezirks-Durchschnitte**, nicht einzelne Menschen. Sie weiß nicht, wer im Bezirk raucht.
+- Eine Nachanalyse zeigte: In radonreichen Bezirken wird weniger geraucht. Genau das erklärt den scheinbaren Schutz. Der gleiche "Schutz" zeigte sich auch bei anderen rauchbedingten Krebsarten, nicht aber bei Krebs, der nichts mit Rauchen zu tun hat ([Puskin 2003](https://europepmc.org/article/MED/12705451); zusammengefasst in [IARC 100D](https://cdn.who.int/media/docs/default-source/radiation/mono100d.pdf)).
+- In Schweden drehte sich ein ansteigendes Risiko in eine Abnahme um, sobald man dieselben Daten auf Bezirksebene zusammenfasste (laut [IARC 100D](https://cdn.who.int/media/docs/default-source/radiation/mono100d.pdf)).
+
+Die Studien an einzelnen Menschen (Fall-Kontroll-Studien und Bergarbeiter-Kohorten) gelten deshalb als deutlich aussagekräftiger.
+
+**Was ehrlich unsicher ist:**
+
+- **Bei kleinen Werten (unter 100 Bq/m³)** sind die Unsicherheiten groß. Die nordamerikanische Studie hat ein Ergebnis, das knapp an "kein Effekt" (1,00) liegt. Bei den Wismut-Bergarbeitern war der Zusammenhang unterhalb einer gewissen Gesamtmenge in einer Auswertung nicht signifikant ([Grosche et al. 2006](https://europepmc.org/article/MED/17043686)). Eine spätere Auswertung mit niedrigen Dauerbelastungen fand ihn aber wieder ([Kreuzer et al. 2015](https://europepmc.org/article/MED/26393888)).
+- Dass die Kurve **ganz ohne Schwelle** bis Null geht, ist eine gut begründete Annahme, aber für sehr kleine Werte nicht direkt bewiesen. Sie wird verwendet, weil keine Studie eine sichere Untergrenze gezeigt hat.
+
+## 6. Unser Urteil: Geldmache oder echte Gefahr?
+
+**Radon ist keine Geldmache. Die Gefahr ist echt, aber sie ist ungleich verteilt.**
+
+**Warum echt:**
+
+1. Die Belege kommen aus **begutachteten Studien unabhängiger Forschergruppen** auf drei Kontinenten, von Bergwerken und aus Wohnhäusern. Alle zeigen dasselbe. Bei der nordamerikanischen Studie ist die öffentliche Förderung (US-Gesundheitsinstitute) belegt, bei den anderen habe ich sie nicht geprüft.
+2. Die Einstufung stammt von der **IARC**, der Krebsforschungsagentur der WHO. Sie hat kein Produkt zu verkaufen.
+3. Der Mechanismus ist bekannt und im Labor gezeigt: Alphastrahlung zerbricht die DNA.
+4. Die Gegenstudie (Cohen) hat einen bekannten, nachgewiesenen Denkfehler.
+
+**Wo man trotzdem vorsichtig sein sollte:**
+
+1. **Für Nichtraucher bei niedrigen Werten** ist das zusätzliche Risiko sehr klein (etwa 1 von 1 000 Menschen je 100 Bq/m³ ein Leben lang).
+2. **Für Raucher** ist es etwa 20-mal größer. Für sie wäre Aufhören viel wirksamer als jede Radon-Anlage.
+3. **Firmen, die Messgeräte oder Sanierungen verkaufen**, haben ein Interesse daran, die Gefahr groß zu machen. Wer bei niedrigen Werten teure Anlagen verkauft bekommt, zahlt für wenig Nutzen. Hier kann es tatsächlich zur Geldmache werden, nicht bei der Gefahr selbst.
+
+**Für Hr. Grimmers Haus:**
+
+- Im Alltag lag das Haus bei etwa 36 Bq/m³, also weit unter 100 (WHO) und 300 (Österreich).
+- Die Anlage hat Spitzen und Bodenluft an der Wand zuverlässig entfernt. Gesundheitlich macht der Unterschied von etwa 5 Bq/m³ aber fast nichts aus: etwa 1 Fall auf 20 000 Nichtraucher.
+- Sinnvoll war das Messen trotzdem: Ohne Messung hätte niemand die über 500 Bq/m³ am Anfang gesehen. Wenn so ein Wert dauerhaft bliebe, wäre das ein echtes Risiko.
+- **Unsere Einschätzung:** Die Gefahr durch Radon ist real und gut belegt. Bei diesem Haus war sie im Alltag aber gering, und der zusätzliche Gesundheitsnutzen der Anlage ist klein. Ob sie sich lohnt, hängt vom Winter (fehlt in den Daten) und davon ab, ob jemand im Haus raucht.
+
+## 7. Quellen
+
+Selbst gelesen (Volltext oder Abstract):
+
+- IARC (2012): *Radiation. Volume 100 D, A Review of Human Carcinogens*, Abschnitt Radon-222 und Evaluation. Herausgeber: Internationale Agentur für Krebsforschung (WHO). <https://cdn.who.int/media/docs/default-source/radiation/mono100d.pdf>
+- Darby S. et al. (2005): Radon in homes and risk of lung cancer: collaborative analysis of individual data from 13 European case-control studies. *BMJ* 330:223. Abstract: <https://europepmc.org/article/MED/15613366>
+- Krewski D. et al. (2005): Residential radon and risk of lung cancer: a combined analysis of 7 North American case-control studies. *Epidemiology* 16(2):137–145. Abstract mit Förderung: <https://europepmc.org/article/MED/15703527>
+- Lubin J.H. et al. (2004): Risk of lung cancer and residential radon in China: pooled results of two studies. *Int J Cancer* 109(1):132–137. Abstract: <https://europepmc.org/article/MED/14735479>
+- Grosche B. et al. (2006): Lung cancer risk among German male uranium miners: a cohort study, 1946–1998. *Br J Cancer* 95(9):1280–1287. <https://europepmc.org/article/MED/17043686>
+- Kreuzer M. et al. (2008): Radon and risk of extrapulmonary cancers (Wismut). *Br J Cancer* 99(11):1946–1953. <https://europepmc.org/article/MED/19002172>
+- Kreuzer M. et al. (2010): Radon and risk of death from cancer and cardiovascular diseases (Wismut). *Radiat Environ Biophys* 49(2):177–185. <https://europepmc.org/article/MED/19855993>
+- Kreuzer M. et al. (2015): Lung cancer risk at low radon exposure rates in German uranium miners. *Br J Cancer* 113(9):1367–1369. <https://europepmc.org/article/MED/26393888>
+- Puskin J.S. (2003): Smoking as a confounder in ecologic correlations of cancer mortality rates with average county radon levels. *Health Physics*. <https://europepmc.org/article/MED/12705451>
+- WHO: Radon and health (Fact Sheet). <https://www.who.int/news-room/fact-sheets/detail/radon-and-health>
+- Land Oberösterreich: Was ist Radon? (Behörde). <https://www.land-oberoesterreich.gv.at/radon.htm>
+
+**Nicht geprüft:** die Finanzierung der Studien von Darby, Lubin und Kreuzer/Grosche (im Abstract-Datensatz nicht angegeben). Die Cohen-Studie (1995) habe ich nicht selbst gelesen, nur ihre Darstellung bei der IARC. Die Rechnung "1 Fall auf 20 000" ist eine eigene lineare Interpolation der Darby-Zahlen.

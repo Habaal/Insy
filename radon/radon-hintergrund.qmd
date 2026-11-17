@@ -26,12 +26,14 @@ von etwa 3,8 Tagen (Allgemeinwissen, nicht aus den unten genannten Quellen; unge
   (langfristiger Mittelwert). Raucher sind etwa 25-mal so stark gefährdet. [^who]
 - Österreich: rund 10 % der Lungenkrebsfälle (ca. 400 pro Jahr). [^ooe]
 
+Ausführlich mit den großen Studien, absoluten Risiken und Langzeitschäden: [Wie gefährlich ist Radon wirklich?](gesundheit.qmd)
+
 ## Grenz- und Referenzwerte
 
 | Stelle | Wert (Jahresmittel) |
 |---|---|
 | WHO | 100 Bq/m³, wenn nicht erreichbar höchstens 300 [^who] |
-| Österreich (Strahlenschutzgesetz 2020, Radonschutzverordnung) | 300 Bq/m³ [^ooe] [^ags] |
+| Österreich (Strahlenschutzgesetz 2020, Radonschutzverordnung) | 300 Bq/m³ [^ooe] |
 
 Ein Referenzwert ist ein **Jahresmittel**, kein Grenzwert für einzelne Stunden: Einzelspitzen wie die 300–700 Bq/m³ in unseren Daten
 sagen für sich nichts über die Jahresbelastung. WHO empfiehlt Messungen über mindestens 3 Monate, die AGES misst 6 Monate.
@@ -39,7 +41,7 @@ sagen für sich nichts über die Jahresbelastung. WHO empfiehlt Messungen über 
 ## Gegenmaßnahmen
 
 - Gebäude abdichten (konvektionsdichte erdberührte Bauteile), Radondrainage/Unterbodenabsaugung
-  (laut Land OÖ die häufigste, wirksamste Sanierung, ÖNORM S 5280-3). [^ooe] [^ags]
+  (laut Land OÖ die häufigste, wirksamste Sanierung, ÖNORM S 5280-3). [^ooe]
 - Bessere Gebäudelüftung; Lüftungsventilatoren senken die Werte weiter. [^who]
 - **Überdruck im Haus** (Hr. Grimmers Anlage): Das Prinzip ist, dass das Haus gegenüber dem Boden leicht überdrückt wird,
   sodass keine Bodenluft mehr einströmt. Diese Erklärung ist Allgemeinwissen, in den abgerufenen Quellen nicht ausdrücklich
@@ -47,4 +49,3 @@ sagen für sich nichts über die Jahresbelastung. WHO empfiehlt Messungen über 
 
 [^who]: WHO, Radon and health: <https://www.who.int/news-room/fact-sheets/detail/radon-and-health>
 [^ooe]: Land Oberösterreich, Was ist Radon?: <https://www.land-oberoesterreich.gv.at/radon.htm>
-[^ags]: Übersicht zu Strahlenschutzgesetz 2020 / Radonschutzverordnung (BGBl. II Nr. 470/2020) laut Suchergebnis; Seiten der WKO: <https://www.wko.at/betriebsanlagen/radonschutzverordnung>

@@ -18,6 +18,8 @@ website:
         text: Wirkung der Anlage
       - href: radon-hintergrund.qmd
         text: Radon-Hintergrund
+      - href: gesundheit.qmd
+        text: Gesundheit und Studien
       - href: dashboard.html
         text: Dashboard
       - href: befunde.qmd
