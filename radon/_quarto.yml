@@ -20,6 +20,8 @@ website:
         text: Radon-Hintergrund
       - href: gesundheit.qmd
         text: Gesundheit und Studien
+      - href: urteil.qmd
+        text: Urteil und Finanzierung
       - href: dashboard.html
         text: Dashboard
       - href: befunde.qmd

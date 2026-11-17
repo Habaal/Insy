@@ -1,0 +1,53 @@
+---
+title: "Urteil: Ist Radon nur Geldmache?"
+---
+
+Die Fakten zur Gesundheit (Studien, Risiken, Tabelle je 100 Bq/m³) stehen auf der Seite [Gesundheit und Studien](gesundheit.qmd). Hier steht, **wer die Studien bezahlt hat** und **was wir daraus schließen**.
+
+## 1. Wer hat die Studien bezahlt?
+
+Wenn jemand Geld mit Radon verdient (Messgeräte, Sanierungen), könnte er Interesse an alarmierenden Ergebnissen haben. Deshalb haben wir geprüft, woher das Geld für die wichtigsten Studien kam.
+
+| Quelle | Wer steht dahinter? | Finanzierung | Geprüft? |
+|---|---|---|---|
+| [IARC-Monographie 100D](https://cdn.who.int/media/docs/default-source/radiation/mono100d.pdf) (2012) | Internationale Agentur für Krebsforschung, Teil der WHO. Fasst alle Studien zusammen und stuft ein. | WHO-Einrichtung, öffentlich finanziert (Allgemeinwissen) | Herausgeber geprüft, Finanzierung der Arbeitsgruppe nicht im Detail |
+| [WHO Fact Sheet](https://www.who.int/news-room/fact-sheets/detail/radon-and-health) | Weltgesundheitsorganisation | öffentlich | Herausgeber geprüft |
+| [Krewski et al. 2005](https://europepmc.org/article/MED/15703527), 7 Studien Nordamerika | Forschergruppe um D. Krewski, 7 Studien aus USA und Kanada | **US-Gesundheitsinstitute (NIH): Krebsinstitut NCI und Umweltgesundheitsinstitut NIEHS** | **ja**, Fördernummern im Datensatz |
+| [Darby et al. 2005](https://europepmc.org/article/MED/15613366), 13 Studien Europa | Forschergruppen aus 9 europäischen Ländern | im Abstract-Datensatz **nicht angegeben** | nein (Volltext war gesperrt) |
+| [Lubin et al. 2004](https://europepmc.org/article/MED/14735479), 2 Studien China | Forschergruppe um J. H. Lubin | im Datensatz **nicht angegeben** | nein |
+| [Grosche 2006](https://europepmc.org/article/MED/17043686), [Kreuzer 2008](https://europepmc.org/article/MED/19002172), [2010](https://europepmc.org/article/MED/19855993), [2015](https://europepmc.org/article/MED/26393888): Wismut-Bergarbeiter | Kohorte von fast 59 000 deutschen Uranbergarbeitern | im Datensatz **nicht angegeben** | nein |
+| [Puskin 2003](https://europepmc.org/article/MED/12705451), Kritik an der Gegenstudie | Einzelautor, Zeitschrift *Health Physics* | im Datensatz nicht angegeben | nein |
+| [Land Oberösterreich](https://www.land-oberoesterreich.gv.at/radon.htm) | Landesbehörde | öffentlich | Herausgeber geprüft |
+
+**Was wir daraus schließen:**
+
+- Bei **keiner** der Quellen haben wir eine Firma als Geldgeber gefunden. Die einzige belegte Förderung (Krewski) ist **öffentlich**.
+- Bei vier Studiengruppen konnten wir die Finanzierung nicht nachprüfen. Wir behaupten deshalb nicht, dass sie unabhängig finanziert sind, sondern nur, dass wir keinen Hinweis auf Firmengeld gefunden haben.
+- Am wichtigsten: Die Ergebnisse kommen von **verschiedenen Forschergruppen auf drei Kontinenten** und aus **zwei völlig verschiedenen Situationen** (Bergwerk und Wohnhaus). Dass alle unabhängig voneinander dasselbe finden, lässt sich mit gekauften Ergebnissen kaum erklären.
+- Die einzige bekannte Gegenstudie (Cohen 1995) hat einen nachgewiesenen Denkfehler: Sie vergleicht ganze Bezirke und übersieht, dass in radonreichen Bezirken weniger geraucht wird ([Puskin 2003](https://europepmc.org/article/MED/12705451), zusammengefasst bei der [IARC](https://cdn.who.int/media/docs/default-source/radiation/mono100d.pdf)).
+
+## 2. Unser Urteil: Geldmache oder echte Gefahr?
+
+**Radon ist keine Geldmache. Die Gefahr ist echt, aber sie ist ungleich verteilt.**
+
+**Warum echt:**
+
+1. Die Belege kommen aus **begutachteten Studien unabhängiger Forschergruppen** auf drei Kontinenten, von Bergwerken und aus Wohnhäusern. Alle zeigen dasselbe.
+2. Die Einstufung als "krebserregend für Menschen" (höchste Stufe) stammt von der **IARC**, der Krebsforschungsagentur der WHO. Sie hat kein Produkt zu verkaufen.
+3. Der Mechanismus ist bekannt und im Labor gezeigt: Alphastrahlung bricht die DNA.
+4. Das Risiko steigt gleichmäßig mit der Menge, und schon unter 200 Bq/m³ war es noch messbar.
+
+**Wo man trotzdem vorsichtig sein sollte:**
+
+1. **Für Nichtraucher bei niedrigen Werten** ist das zusätzliche Risiko sehr klein: etwa 0,5 bis 1 zusätzlicher Fall je 1 000 Menschen je 100 Bq/m³, über ein ganzes Leben.
+2. **Für Raucher** ist es etwa 25-mal größer (WHO). Für sie wäre Aufhören viel wirksamer als jede Radon-Anlage.
+3. **Firmen, die Messgeräte oder Sanierungen verkaufen**, haben ein Interesse daran, die Gefahr groß darzustellen. Wer bei niedrigen Werten teure Anlagen verkauft bekommt, zahlt für wenig Nutzen. Hier kann es tatsächlich zur Geldmache werden, aber beim Verkauf, nicht bei der Gefahr selbst.
+4. Die Radon-Strahlung bleibt **nicht** jahrzehntelang in der Lunge. Was sich über Jahre aufsummiert, sind die kleinen Schäden durch jeden Atemzug. Deshalb zählt der **Dauerwert über viele Jahre**, nicht ein einzelner hoher Tag (siehe [Gesundheit und Studien](gesundheit.qmd)).
+
+**Für Hr. Grimmers Haus:**
+
+- Im Alltag lag das Haus bei etwa 36 Bq/m³, also weit unter 100 (WHO) und 300 (Österreich).
+- Die Anlage hat Spitzen und Bodenluft an der Wand zuverlässig entfernt. Gesundheitlich macht der Unterschied von etwa 5 Bq/m³ aber fast nichts aus: etwa 1 zusätzlicher Fall auf 20 000 bis 30 000 Nichtraucher, eigene Hochrechnung.
+- Sinnvoll war das Messen trotzdem: Ohne Messung hätte niemand die über 500 Bq/m³ am Anfang gesehen. Wenn so ein Wert über Jahre bliebe, wäre das ein echtes Risiko (laut Tabelle etwa ×1,8).
+
+**Unsere Einschätzung in einem Satz:** Die Gefahr durch Radon ist real und von unabhängigen Studien gut belegt. Bei diesem Haus war sie im Alltag aber gering, und der zusätzliche Gesundheitsnutzen der Anlage ist klein. Ob sie sich lohnt, hängt vom Winter (fehlt in den Daten) und davon ab, ob jemand im Haus raucht.
