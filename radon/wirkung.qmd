@@ -4,7 +4,7 @@ title: "Hat die Belüftungs-Anlage das Problem gelöst?"
 
 **Aufgabe von Hr. Grimmer:** Hat er mit der Anlage ein echtes Problem gelöst, oder hat er etwas unnötig bekämpft und dabei etwas verloren?
 
-**Zusatzinfos von ihm:** Die Überdruck-Anlage wurde am 24.08. eingebaut. In den ersten Tagen danach hat er jedes Mal sofort gelüftet, wenn der Radonwert stieg, und die Fenster wieder geschlossen, sobald er fiel. Die Sensoren messen auf etwa ±30 Bq/m³ genau.
+**Zusatzinfos von ihm:** Die Überdruck-Anlage wurde am 24.08. eingebaut. In den ersten Tagen danach hat er jedes Mal sofort gelüftet, wenn der Radonwert stieg, und die Fenster wieder geschlossen, sobald er fiel. Das war **nur am Anfang** so (bestätigt). Die Anlage läuft seit dem Einbau durchgehend, aber **auf wechselnden Stufen** (die Luftmenge variiert). Die Sensoren messen auf etwa ±30 Bq/m³ genau.
 
 ## Kurzantwort
 
@@ -13,7 +13,7 @@ title: "Hat die Belüftungs-Anlage das Problem gelöst?"
 1. **Ja, die Anlage wirkt.** Hohe Spitzen und die Bodenluft an der Außenwand sind nach dem Einbau verschwunden (Beweise unten).
 2. **Das Problem war im Alltag aber klein.** Auch vor dem Einbau lagen die Wohnräume im Mittel bei etwa 36 Bq/m³. Das ist weit unter 100 (WHO) und 300 (Österreich). Über 300 ging es nur im Urlaub (Haus zu) und in den ersten Märztagen. Dazu kamen kurze nächtliche Spitzen zwischen 100 und 200 und am 20.07. (wahrscheinlich Fenster zu) bis etwa 250.
 3. **Das Panik-Lüften nach dem Einbau war unnötig.** Die Werte, auf die er reagiert hat, waren harmlos und liegen zum Teil im Messfehler.
-4. **Ob sich die Anlage insgesamt "lohnt", lässt sich mit diesen Daten nicht sagen.** Der Winter fehlt (dort ist Radon meist höher), und der entscheidende Test, ein längeres Wegfahren *mit* Anlage, wurde nicht gemacht. Auch die Kosten (Anschaffung, Strom, Heizwärme durch Lüften) stehen nicht in den Daten.
+4. **Ob sich die Anlage insgesamt "lohnt", lässt sich mit diesen Daten nicht sagen.** Der Winter fehlt (dort ist Radon meist höher), und der entscheidende Test, ein längeres Wegfahren *mit* Anlage, wurde nicht gemacht. Auch die Kosten (Anschaffung, Strom, Heizwärme durch Lüften) stehen nicht in den Daten. Laut Hr. Grimmer sind weder Winterdaten noch Kosten verfügbar und werden es auch nicht werden. Diese Lücke bleibt also endgültig.
 
 ![Typischer Verlauf: fast immer im grünen Bereich, ein klarer Ausreißer im Urlaub](bilder/e1_gesamtverlauf.png)
 
@@ -68,15 +68,18 @@ Ja, nach den Daten.
 
 ## Was die Daten nicht beantworten können
 
-- **Winter:** Die Messung endet im Oktober. Radon ist im Winter meist höher (Allgemeinwissen). Ob die Anlage dann den Unterschied macht, ist offen.
+- **Winter:** Die Messung endet im Oktober. Radon ist im Winter meist höher (Allgemeinwissen). Ob die Anlage dann den Unterschied macht, bleibt offen. Neue Daten bekommen wir laut Hr. Grimmer nicht.
+- **Anlagenstufe:** Die Anlage läuft durchgehend, aber auf unterschiedlichen Stufen (Luftmenge variiert). Welche Stufe wann lief, steht nicht in den Daten. Die gemessene Wirkung ist deshalb ein Mittel über alle Stufen, und welche Stufe nötig ist, lässt sich nicht sagen.
 - **Jahreszeit:** Der Vergleich vor/nach ist auch ein Vergleich Sommer/Herbst. Das Sockel-Signal sank schon vor dem 24.08.
 - **Messfehler ±30 Bq/m³:** Der Anstieg im Herbst (Wohnräume im Wochenmedian von etwa 22 im September auf 35–42 Anfang Oktober) liegt in diesem Bereich und ist **nicht belastbar**. Der Sockel-Unterschied bleibt dabei bei etwa 0.
 - **Der entscheidende Test fehlt:** Ein Wochenende oder Urlaub mit geschlossenen Fenstern *mit* Anlage. Im August (ohne Anlage) stieg das Haus auf über 300.
 - **Keller:** Laut Hr. Grimmer weniger wichtig, deshalb nicht in die Bewertung eingegangen.
-- **Einbau-Datum:** Ich gehe vom 24.08. aus. Am 23.08. nachts gab es eine Spitze in einigen Räumen, einen Tag vor dem Einbau (Ursache unbekannt).
+- **Einbau-Datum:** Ich gehe vom 24.08. aus. Am 23.08. nachts gab es eine Spitze in einigen Räumen, einen Tag vor dem Einbau. Laut Hr. Grimmer war da nichts Besonderes, die Ursache bleibt unbekannt (vielleicht Messungenauigkeit).
 
 ## Vorschlag für die Abgabe
 
 Antwort an Hr. Grimmer in einem Satz: *"Die Anlage entfernt Spitzen und Bodenluft-Eintritt zuverlässig, aber der Alltagswert war auch vorher unkritisch, und das Dauer-Lüften nach dem Einbau war nicht nötig. Ob sich die Anlage lohnt, entscheidet sich im Winter und beim nächsten Wegfahren."*
 
-**Offene Fragen an ihn:** Läuft die Anlage seit dem 24.08. durchgehend? Wurde sie seitdem abgeschaltet oder verstellt? Gibt es Heiz- oder Stromdaten zum Vergleich? Wird im Winter weitergemessen?
+**Beantwortet von Hr. Grimmer:** Die Anlage läuft durchgehend, auf wechselnden Stufen. Das Panik-Lüften war nur am Anfang. Heiz- und Stromdaten sowie Winterdaten bekommt er nicht, 23.08. nachts war nichts Besonderes. Details in [Fragen und Antworten](fragen.qmd).
+
+**Daher bleibt offen (und lässt sich mit den vorhandenen Daten nicht klären):** Wirkung im Winter, Wirkung bei einem zweiten Urlaub, Kosten und Heizwärme, Wirkung je Stufe.

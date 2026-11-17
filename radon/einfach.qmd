@@ -69,8 +69,9 @@ Wichtig: Eine einzelne Stunde im roten Bereich ist kein Gesundheitsproblem. Ents
 
 ## Was wir nicht wissen
 
-- Wie es im **Winter** aussieht (die Messung endet im Oktober).
+- Wie es im **Winter** aussieht (die Messung endet im Oktober, neue Daten gibt es laut Hr. Grimmer nicht).
 - Was die Anlage bei einem **zweiten Urlaub** bringen würde.
+- Welche **Stufe** der Anlage wann lief: Sie läuft durchgehend, aber mit wechselnder Luftmenge.
 - Was die Anlage kostet (Anschaffung, Strom).
 - Ob die Phasen stimmen, die wir aus den Daten gelesen haben: Hr. Grimmer hat sie teilweise bestätigt, siehe [Fragen und Antworten](fragen.qmd).
 

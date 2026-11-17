@@ -21,10 +21,14 @@ Antworten von Hr. Grimmer (über den Schüler weitergegeben), mit dem, was sich 
 
 Zusatzinfo für die Wirkungs-Bewertung: In den **ersten Tagen nach dem Einbau** hat er bei jedem Radon-Anstieg sofort gelüftet und die Fenster nach dem Abfall wieder geschlossen (aus Sorge). Siehe [Hat die Anlage geholfen?](wirkung.qmd).
 
-## Neue Fragen (aus der Wirkungs-Analyse)
+## Zweite Fragerunde (aus der Wirkungs-Analyse)
 
-1. Läuft die Anlage seit dem 24.08. **durchgehend**, oder wurde sie abgeschaltet oder verstellt?
-2. Gibt es Heiz- oder Stromdaten (zum Vergleich, was Lüften und Anlage kosten)?
-3. Wird im **Winter** weitergemessen? Dort entscheidet sich, ob sich die Anlage lohnt.
-4. Wann genau waren die "Panik-Lüftungen" (Tage)? Dann ließe sich die Wirkung der Anlage sauberer von seinem Lüften trennen.
-5. Was war am 23.08. nachts (Spitze in mehreren Räumen, einen Tag vor dem Einbau)?
+| # | Frage | Antwort | Folge für die Analyse |
+|---|---|---|---|
+| 1 | Läuft die Anlage seit dem 24.08. durchgehend, oder wurde sie abgeschaltet oder verstellt? | **Ja, durchgehend, aber auf unterschiedlichen Stufen.** Die Luftmenge variiert. | Es gibt keine Phase ohne Anlage zum Vergleich. Die Wirkung ist ein Mittel über alle Stufen, welche Stufe nötig ist, lässt sich nicht sagen. |
+| 2 | Wann waren die "Panik-Lüftungen"? | **Nur am Anfang.** | Bestätigt, dass die Wochen ab etwa 31.08. ohne Panik-Lüften sind. Der Spitzen-Beleg aus diesen sechs Wochen gilt. |
+| 3 | Wird im Winter weitergemessen, gibt es neue Daten? | **Steht ihm nicht zur Verfügung und bekommt er nicht.** | Winter-Test entfällt. Das Verdikt bleibt mit dieser Lücke stehen. |
+| 4 | Heiz- oder Stromdaten, Kosten der Anlage? | **Steht ihm nicht zur Verfügung und bekommt er nicht.** | "Verloren" lässt sich nicht beziffern. Das steht so in der Wirkungs-Seite. |
+| 5 | Was war am 23.08. nachts? | **Nichts Besonderes.** | Spitze bleibt ungeklärt, vielleicht Messungenauigkeit. Die Vor-/Nachher-Grenze 24.08. ändert das nicht. |
+
+Damit sind alle Fragen beantwortet. Offen bleibt nur, was die Daten nicht hergeben: Winter, zweiter Urlaub, Kosten und die Wirkung je Anlagenstufe.
