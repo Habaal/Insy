@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Einfach erklärt: Was die Radon-Daten zeigen – Radon-Analyse</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Radon-Analyse</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Suchen"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navigation umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Überblick</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./einfach.html" aria-current="page"> 
+<span class="menu-text">Einfach erklärt</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./wirkung.html"> 
+<span class="menu-text">Wirkung der Anlage</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./radon-hintergrund.html"> 
+<span class="menu-text">Radon-Hintergrund</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./gesundheit.html"> 
+<span class="menu-text">Gesundheit und Studien</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./urteil.html"> 
+<span class="menu-text">Urteil und Finanzierung</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dashboard.html"> 
+<span class="menu-text">Dashboard</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./befunde.html"> 
+<span class="menu-text">Befunde (interaktiv)</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./fragen.html"> 
+<span class="menu-text">Fragen und Antworten</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Auf dieser Seite</h2>
+   
+  <ul>
+  <li><a href="#worum-geht-es" id="toc-worum-geht-es" class="nav-link active" data-scroll-target="#worum-geht-es">Worum geht es?</a></li>
+  <li><a href="#das-mini-lexikon" id="toc-das-mini-lexikon" class="nav-link" data-scroll-target="#das-mini-lexikon">Das Mini-Lexikon</a></li>
+  <li><a href="#so-liest-du-die-bilder-die-ampel" id="toc-so-liest-du-die-bilder-die-ampel" class="nav-link" data-scroll-target="#so-liest-du-die-bilder-die-ampel">So liest du die Bilder: die Ampel</a></li>
+  <li><a href="#die-geschichte-in-sechs-schritten" id="toc-die-geschichte-in-sechs-schritten" class="nav-link" data-scroll-target="#die-geschichte-in-sechs-schritten">Die Geschichte in sechs Schritten</a></li>
+  <li><a href="#der-typische-tag" id="toc-der-typische-tag" class="nav-link" data-scroll-target="#der-typische-tag">Der typische Tag</a></li>
+  <li><a href="#hat-die-anlage-geholfen" id="toc-hat-die-anlage-geholfen" class="nav-link" data-scroll-target="#hat-die-anlage-geholfen">Hat die Anlage geholfen?</a></li>
+  <li><a href="#was-wir-nicht-wissen" id="toc-was-wir-nicht-wissen" class="nav-link" data-scroll-target="#was-wir-nicht-wissen">Was wir nicht wissen</a></li>
+  <li><a href="#zum-weiterklicken" id="toc-zum-weiterklicken" class="nav-link" data-scroll-target="#zum-weiterklicken">Zum Weiterklicken</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Einfach erklärt: Was die Radon-Daten zeigen</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Diese Seite ist für alle, die sich mit dem Thema nicht auskennen. Du musst nichts vorher wissen.</p>
+<section id="worum-geht-es" class="level2">
+<h2 class="anchored" data-anchor-id="worum-geht-es">Worum geht es?</h2>
+<p>In einem Haus wurde ein Jahr lang (24.03. bis 13.10.2026) in mehreren Räumen <strong>Radon</strong> gemessen. Radon ist ein Gas, das aus dem Boden kommt, man sieht und riecht es nicht. Wer es über viele Jahre in hoher Menge einatmet, hat ein höheres Risiko für Lungenkrebs. Mitten im Zeitraum (24.08.) wurde eine Anlage eingebaut, die im Haus einen leichten Überdruck erzeugt. Dadurch soll weniger Bodenluft hereinkommen.</p>
+<p>Wir wollen aus den Zahlen herauslesen: <strong>Wann war etwas los? Warum? Und hat die Anlage etwas gebracht?</strong></p>
+</section>
+<section id="das-mini-lexikon" class="level2">
+<h2 class="anchored" data-anchor-id="das-mini-lexikon">Das Mini-Lexikon</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Wort</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Radon</strong></td>
+<td>radioaktives Gas aus dem Boden. Geruchlos, unsichtbar.</td>
+</tr>
+<tr class="even">
+<td><strong>Bq/m³</strong> (Becquerel pro Kubikmeter)</td>
+<td>Maß für die Radon-Menge in der Luft. Je höher, desto mehr Radon. <strong>Beispiel:</strong> 30 Bq/m³ ist wenig, 300 ist viel.</td>
+</tr>
+<tr class="odd">
+<td><strong>Referenzwert</strong></td>
+<td>Richtwert, ab dem man etwas unternehmen soll: <strong>100</strong> (WHO) und <strong>300</strong> (Österreich). Er gilt für den <strong>Durchschnitt über ein Jahr</strong>, nicht für einzelne Stunden.</td>
+</tr>
+<tr class="even">
+<td><strong>CO₂</strong></td>
+<td>Gas, das wir ausatmen. Hier ein “Anzeiger”: steigt es, sind Menschen im Raum und die Luft ist verbraucht. Fällt es auf etwa 400, ist gelüftet worden oder niemand da.</td>
+</tr>
+<tr class="odd">
+<td><strong>Überdruck-Anlage</strong></td>
+<td>Gerät, das etwas mehr Luft in das Haus bläst als hinausgeht. So wird keine Bodenluft hereingesaugt.</td>
+</tr>
+<tr class="even">
+<td><strong>Messfehler ±30</strong></td>
+<td>Der Sensor liegt um bis zu 30 Bq/m³ daneben. Unterschiede unter 30 sind nicht sicher.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="so-liest-du-die-bilder-die-ampel" class="level2">
+<h2 class="anchored" data-anchor-id="so-liest-du-die-bilder-die-ampel">So liest du die Bilder: die Ampel</h2>
+<p>Alle Radon-Diagramme haben eine “Ampel” im Hintergrund:</p>
+<ul>
+<li><strong>grün</strong> (unter 100): unbedenklich</li>
+<li><strong>gelb</strong> (100 bis 300): erhöht, bei kurzer Dauer nicht schlimm</li>
+<li><strong>rot</strong> (über 300): hoch, sollte nicht lange so bleiben</li>
+</ul>
+<p>Wichtig: Eine einzelne Stunde im roten Bereich ist kein Gesundheitsproblem. Entscheidend ist der Durchschnitt über sehr lange Zeit.</p>
+</section>
+<section id="die-geschichte-in-sechs-schritten" class="level2">
+<h2 class="anchored" data-anchor-id="die-geschichte-in-sechs-schritten">Die Geschichte in sechs Schritten</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bilder/e1_gesamtverlauf.png" class="img-fluid figure-img"></p>
+<figcaption>Der ganze Zeitraum in einem Bild</figcaption>
+</figure>
+</div>
+<p><strong>Was sieht man?</strong> Die blaue Linie ist der typische Radonwert der Wohnräume je Tag. Sie bleibt fast immer im grünen Bereich. Es gibt zwei Ausreißer nach oben: ganz am Anfang und im Urlaub.</p>
+<ol type="1">
+<li><strong>Entdeckung (März):</strong> Am Anfang zeigte der Küchen-Sensor 540 bis 700 Bq/m³. Das war der Moment, in dem das Problem erkannt wurde. Danach hat Hr. Grimmer etwas dagegen unternommen, der Wert fiel in wenigen Tagen stark.</li>
+<li><strong>Alltag (April bis August):</strong> Es wurde mal hier, mal da gelüftet, aber unregelmäßig. Radon lag meist bei <strong>20 bis 40</strong>. Nachts stieg es oft kurz auf 100 bis 200 (vermutlich bei geschlossenen Fenstern).</li>
+<li><strong>Urlaub (31.07. bis 06.08.):</strong> Niemand war zuhause, alles geschlossen. Das Radon stieg in <strong>allen Räumen</strong> auf etwa <strong>330</strong> (rund 15-mal mehr als sonst). Als der Bewohner zurückkam und lüftete, war es nach etwa <strong>2 Stunden</strong> wieder normal.</li>
+<li><strong>Einbau der Anlage (24.08.):</strong> Danach gab es praktisch keine Spitzen mehr (siehe unten).</li>
+<li><strong>Herbst:</strong> Die Werte steigen leicht (von etwa 22 auf 35 bis 40), liegen aber innerhalb des Messfehlers von ±30 und sind weiter im grünen Bereich.</li>
+<li><strong>Fazit:</strong> Die Anlage hilft gegen Spitzen und gegen Bodenluft an der Wand. Im Alltag war Radon schon vorher kaum ein Problem. Ausführlich: <a href="./wirkung.html">Hat die Anlage geholfen?</a></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bilder/e4_urlaub.png" class="img-fluid figure-img"></p>
+<figcaption>Urlaub: Haus zu, dann Lüften</figcaption>
+</figure>
+</div>
+<p><strong>Was sieht man?</strong> Die graue Fläche ist der Urlaub. Oben steigt Radon, unten ist das CO₂ flach (niemand atmet). Dann fällt Radon in kurzer Zeit auf fast Null, sobald gelüftet wird. <strong>Was heißt das?</strong> Ohne Lüften sammelt sich Radon an, Lüften wirkt sofort.</p>
+</section>
+<section id="der-typische-tag" class="level2">
+<h2 class="anchored" data-anchor-id="der-typische-tag">Der typische Tag</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bilder/e2_typischer_tag.png" class="img-fluid figure-img"></p>
+<figcaption>Ein typischer Tag</figcaption>
+</figure>
+</div>
+<p><strong>Was sieht man?</strong> Für jede Uhrzeit ist der übliche Radonwert gezeigt (Mitte aller Tage). Die orange Linie ist die Zeit vor der Anlage, die blaue danach.</p>
+<ul>
+<li>Nachts (2 bis 7 Uhr) ist der Wert höher: vor der Anlage etwa <strong>44</strong>, danach <strong>36</strong>. Nachts sind die Fenster zu, die Luft steht.</li>
+<li>Tagsüber ist er niedriger (rund <strong>22 bis 26</strong>), weil gelüftet wird und Wind die Luft tauscht. Diese Erklärung ist die übliche Fachlogik (Allgemeinwissen, nicht aus den Quellen geprüft).</li>
+<li>Die <strong>orange Fläche</strong> reicht nachts weiter nach oben: Vor der Anlage gab es also an manchen Nächten deutlich höhere Werte. Danach liegt auch die obere Grenze niedriger (Mitte der oberen Hälfte der Tage: 63 gegen 50).</li>
+</ul>
+</section>
+<section id="hat-die-anlage-geholfen" class="level2">
+<h2 class="anchored" data-anchor-id="hat-die-anlage-geholfen">Hat die Anlage geholfen?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bilder/e3_wirkung.png" class="img-fluid figure-img"></p>
+<figcaption>Wirkung der Anlage</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>Oben:</strong> Anteil der Stunden mit mehr als 100 Bq/m³. Vor der Anlage in fast jeder Woche einige Prozent, danach <strong>fast nie</strong> (in 7 Wochen 1 Stunde).</li>
+<li><strong>Unten:</strong> Vergleich zweier Sensoren im selben Raum, einer an der Außenwand am Boden, einer mitten im Raum. Ist der Wand-Sensor höher, kommt Bodenluft herein. Im Sommer war das so, <strong>nach dem Einbau liegt der Unterschied bei null</strong>.</li>
+</ul>
+<p><strong>Antwort in einem Satz:</strong> Die Anlage wirkt gegen Spitzen und Bodenluft, aber das Radon-Problem im Alltag war schon vorher klein. Das Dauer-Lüften nach dem Einbau war nicht nötig.</p>
+</section>
+<section id="was-wir-nicht-wissen" class="level2">
+<h2 class="anchored" data-anchor-id="was-wir-nicht-wissen">Was wir nicht wissen</h2>
+<ul>
+<li>Wie es im <strong>Winter</strong> aussieht (die Messung endet im Oktober, neue Daten gibt es laut Hr. Grimmer nicht).</li>
+<li>Was die Anlage bei einem <strong>zweiten Urlaub</strong> bringen würde.</li>
+<li>Welche <strong>Stufe</strong> der Anlage wann lief: Sie läuft durchgehend, aber mit wechselnder Luftmenge.</li>
+<li>Was die Anlage kostet (Anschaffung, Strom).</li>
+<li>Ob die Phasen stimmen, die wir aus den Daten gelesen haben: Hr. Grimmer hat sie teilweise bestätigt, siehe <a href="./fragen.html">Fragen und Antworten</a>.</li>
+</ul>
+</section>
+<section id="zum-weiterklicken" class="level2">
+<h2 class="anchored" data-anchor-id="zum-weiterklicken">Zum Weiterklicken</h2>
+<ul>
+<li><a href="dashboard.html">Dashboard</a> zum Ausprobieren: Zeiträume und Räume wählen, Ereignisse anklicken.</li>
+<li><a href="./radon-hintergrund.html">Radon-Hintergrund</a>: warum Radon gefährlich ist und wie es ins Haus kommt.</li>
+<li><a href="./befunde.html">Befunde</a>: alle Zahlen im Detail für Fachleute.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/Habaal\.github\.io\/Insy\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
